@@ -16,7 +16,7 @@ public class Application {
         firstKotik.liveAnotherDay();
         System.out.println("Имя котика: " + firstKotik.getName());
         System.out.println(firstKotik.getMeow().equals(secondKotik.getMeow()));
-        System.out.println("Количество объектов класса Kotik: " + Kotik.getAmountOfObjects());
+        System.out.println("Количество объектов класса Kotik: " + Kotik.getCountOfObjects());
     }
 
 }

@@ -1,17 +1,15 @@
 package ds.anosov.java.homework1.model;
 
-import java.util.Scanner;
 
 public class Kotik {
 
-    private static int amountOfObjects;
+    private static int countOfObjects;
     private int saturationLevel;
     private String name;
     private int age;
     private String color;
     private int weight;
     private String meow;
-    Scanner scanner = new Scanner(System.in);
 
     //конструкторы
     public Kotik(int saturationLevel, String name, int age, String color, int weight, String meow) {
@@ -21,17 +19,16 @@ public class Kotik {
         this.color = color;
         this.weight = weight;
         this.meow = meow;
-        amountOfObjects++;
+        countOfObjects++;
     }
 
     public Kotik() {
-        amountOfObjects++;
+        countOfObjects++;
     }
 
-
     //геттеры и сеттеры
-    public static int getAmountOfObjects() {
-        return amountOfObjects;
+    public static int getCountOfObjects() {
+        return countOfObjects;
     }
 
     public int getSaturationLevel() {
@@ -84,71 +81,66 @@ public class Kotik {
 
     //методы
     public void play() {
-        saturationLevel--;
         if (saturationLevel <= 0) {
             System.out.println("Котик голоден, он не может играть, надо его покормить!");
             eat();
         } else {
             System.out.println("Котик играет");
+            saturationLevel--;
         }
     }
 
     public void sleep() {
-        saturationLevel--;
         if (saturationLevel <= 0) {
             System.out.println("Котик голоден, он не может лечь спать, надо его покормить!");
             eat();
         } else {
             System.out.println("Котик лег спать");
+            saturationLevel--;
         }
     }
 
     public void chaseMouse() {
-        saturationLevel--;
         if (saturationLevel <= 0) {
             System.out.println("Котик голоден, он не может начать ловить мышей, надо его покормить!");
             eat();
         } else {
             System.out.println("Котик начал ловить мышей");
+            saturationLevel--;
         }
     }
 
     public void walkOutside() {
-        saturationLevel--;
         if (saturationLevel <= 0) {
             System.out.println("Котик голоден, он не может пойти на улицу гулять, надо его покормить!");
             eat();
         } else {
             System.out.println("Котик ушел гулять на улицу");
+            saturationLevel--;
         }
     }
 
     public void callOwner() {
-        saturationLevel--;
         if (saturationLevel <= 0) {
             System.out.println("Котик голоден, он не может мяукать и звать хозяина, надо его покормить!");
             eat();
         } else {
             System.out.println("Котик мяукает и зовет хозяина");
+            saturationLevel--;
         }
     }
 
     public void eat() {
-        System.out.print("Введите количество единиц сытости: ");
-        int saturationLevel = scanner.nextInt();
-        System.out.print("Введите название еды, которую получит котик: ");
-        String nameOfFood = scanner.next();
-        eat(saturationLevel, nameOfFood);
+        eat(20, "Колбаса");
     }
 
     public void eat(int saturationLevel) {
-        this.saturationLevel = this.saturationLevel + saturationLevel;
-        System.out.println("Котику дали что-то, он всё съел!");
+        eat(saturationLevel, "Сосиска");
     }
 
     public void eat(int saturationLevel, String nameOfFood) {
         System.out.println("Котику дали " + nameOfFood + ", он всё съел!");
-        this.saturationLevel = this.saturationLevel + saturationLevel;
+        this.saturationLevel = saturationLevel;
         System.out.println("Уровень сытости котика равен: " + saturationLevel);
     }
 
@@ -173,7 +165,5 @@ public class Kotik {
                    break;
            }
         }
-
     }
-
 }
