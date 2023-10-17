@@ -7,11 +7,11 @@ public class Fish extends Carnivorous implements Swim {
 
     @Override
     public void swim() {
-        if (super.getHungerLevel() <= 0) {
+        if (this.getHungerLevel() <= 0) {
             System.out.println("Рыба голодная, она должна найти еду");
         } else {
             System.out.println("Рыба плывет и ищет новую добычу");
-            super.setHungerLevel(super.getHungerLevel() - 1);
+            this.setHungerLevel(this.getHungerLevel() - 1);
         }
     }
 }

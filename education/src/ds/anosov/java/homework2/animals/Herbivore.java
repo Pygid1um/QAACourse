@@ -13,7 +13,7 @@ public class Herbivore extends Animals {
         if (food instanceof Meat) {
             System.out.println("Травоядные не едят мясо! Переданная еда не подходит данному животному!");
         } else {
-           super.setHungerLevel(food.getSatisfyingHunger());
+            this.setHungerLevel(this.getHungerLevel() + food.getSatisfyingHunger());
             System.out.println("Травоядное животное покормлено! Оно съело всё что ей дали");
         }
     }

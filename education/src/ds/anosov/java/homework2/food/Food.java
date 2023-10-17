@@ -4,14 +4,11 @@ public abstract class Food {
     private String name;
     private int satisfyingHunger;
 
-    public Food(String name) {
+    public Food(String name, int satisfyingHunger) {
         if (name != null) {
             this.name = name;
+            this.satisfyingHunger = satisfyingHunger;
         }
-    }
-
-    public void setSatisfyingHunger(int satisfyingHunger) {
-        this.satisfyingHunger = satisfyingHunger;
     }
 
     public int getSatisfyingHunger() {

@@ -1,6 +1,8 @@
 package ds.anosov.java.homework2.animals;
 
 public class Cat extends Carnivorous implements Run, Voice {
+    private String type;
+
     public Cat(String name, int age, int hungerLevel, String type) {
         super(name, age, hungerLevel);
         if (type.equals("Дикий") || type.equals("Домашний")) {
@@ -10,11 +12,9 @@ public class Cat extends Carnivorous implements Run, Voice {
         }
     }
 
-    private String type;
-
     @Override
     public void run() {
-        if (super.getHungerLevel() <= 0) {
+        if (this.getHungerLevel() <= 0) {
             System.out.println("Кот не может бежать так как он голоден, он должен найти еду");
         } else if (type.equals("Дикий")) {
             System.out.println("Кот может бежать со скоростью 20 км/ч");

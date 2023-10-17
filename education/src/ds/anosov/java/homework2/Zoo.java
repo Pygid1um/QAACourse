@@ -7,18 +7,18 @@ import java.util.ArrayList;
 
 public class Zoo {
     public static void main(String[] args) {
-        Cat cat           = new Cat("Василий", 4, 3, "Домашний");
-        Duck duck         = new Duck("Дональд", 5, 5, "Дикая");
-        Eagle eagle       = new Eagle("Джо", 6, 7);
+        Cat cat = new Cat("Василий", 4, 3, "Домашний");
+        Duck duck = new Duck("Дональд", 5, 5, "Дикая", "Самка");
+        Eagle eagle = new Eagle("Джо", 6, 7);
         Elephant elephant = new Elephant("Микки", 15, 10);
-        Fish fish         = new Fish("Мия", 1, 9);
-        Turtle turtle     = new Turtle("Серега", 23, 8);
+        Fish fish = new Fish("Мия", 1, 9);
+        Turtle turtle = new Turtle("Серега", 23, 8);
 
-        Hay hay                       = new Hay("Из клевера", "Скошенная");
-        Leaves leaves                 = new Leaves("Листья дуба", "Свежая");
-        Liver liver                   = new Liver("Печень", 10);
-        Seaweed seaweed               = new Seaweed("Чука", "Не свежая");
-        Steak steak                   = new Steak("Стейк", 13);
+        Hay hay = new Hay("Из клевера", "Скошенная", 10);
+        Leaves leaves = new Leaves("Листья дуба", "Свежая", 4);
+        Liver liver = new Liver("Печень", 10);
+        Seaweed seaweed = new Seaweed("Чука", "Не свежая", 8);
+        Steak steak = new Steak("Стейк", 13);
         WildAnimalMeat wildAnimalMeat = new WildAnimalMeat("Мясо оленя", 10);
 
         Worker worker = new Worker("Петя", 44, "Кипер");
@@ -41,6 +41,5 @@ public class Zoo {
         for (Swim animalsSwim : animalsArrayList) {
             animalsSwim.swim();
         }
-
     }
 }

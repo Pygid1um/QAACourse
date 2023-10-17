@@ -13,7 +13,7 @@ public class Carnivorous extends Animals {
         if (food instanceof Grass) {
             System.out.println("Хищники не едят траву! Переданная еда не подходит данному животному!");
         } else {
-            super.setHungerLevel(food.getSatisfyingHunger());
+            this.setHungerLevel(this.getHungerLevel() + food.getSatisfyingHunger());
             System.out.println("Хищное животное покормлено! Оно съело всё что ей дали");
         }
     }

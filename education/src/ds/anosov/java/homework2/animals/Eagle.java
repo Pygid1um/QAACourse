@@ -7,11 +7,11 @@ public class Eagle extends Carnivorous implements Fly, Voice {
 
     @Override
     public void fly() {
-        if (super.getHungerLevel() <= 0) {
+        if (this.getHungerLevel() <= 0) {
             System.out.println("Орел не может лететь так как он голодный, он должен найти еду");
         }else {
             System.out.println("Орел летит в поисках новой жертвы");
-            super.setHungerLevel(super.getHungerLevel() - 1);
+            this.setHungerLevel(this.getHungerLevel() - 1);
         }
     }
 

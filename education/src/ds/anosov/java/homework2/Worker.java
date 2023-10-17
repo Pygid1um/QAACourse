@@ -19,7 +19,7 @@ public class Worker {
         animals.eat(food);
     }
 
-    public String getVoice(Voice animals) {
-      return animals.voice();
+    public String getVoice(Voice voice) {
+      return voice.voice();
     }
 }

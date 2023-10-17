@@ -17,15 +17,15 @@ public abstract class Animals {
         }
     }
 
-    public int getAge() {
+    protected int getAge() {
         return age;
     }
 
-    public int getHungerLevel() {
+    protected int getHungerLevel() {
         return hungerLevel;
     }
 
-    public void setHungerLevel(int hungerLevel) {
+    protected void setHungerLevel(int hungerLevel) {
         this.hungerLevel = hungerLevel;
     }
 }
