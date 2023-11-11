@@ -1,6 +1,7 @@
 package homework3.models.general;
 
-import homework3.enams.AviarySize;
+import homework3.enums.AnimalsType;
+import homework3.enums.AviarySize;
 import homework3.interfaces.animals.Swim;
 import homework3.models.animals.*;
 import homework3.models.food.*;
@@ -9,8 +10,8 @@ import java.util.ArrayList;
 
 public class Zoo {
     public static void main(String[] args) {
-        Cat cat = new Cat("Василий", 4, 3, AviarySize.SMALL,"Домашний");
-        Duck duck = new Duck("Дональд", 5, 5, AviarySize.SMALL,"Дикая", "Самка");
+        Cat cat = new Cat("Василий", 4, 3, AviarySize.SMALL, AnimalsType.DOMESTIC);
+        Duck duck = new Duck("Дональд", 5, 5, AviarySize.SMALL,AnimalsType.WILD, false);
         Eagle eagle = new Eagle("Джо", 6, 7, AviarySize.LARGE);
         Elephant elephant = new Elephant("Микки", 15, 10, AviarySize.EXTRA_LARGE);
         Fish fish = new Fish("Мия", 1, 9, AviarySize.MEDIUM);
@@ -45,14 +46,15 @@ public class Zoo {
         }
 
         Aviary<Carnivorous> carnivorousAviary = new Aviary<>("Клетка", AviarySize.LARGE);
-        carnivorousAviary.putAnimal("Орел", eagle);
-        carnivorousAviary.putAnimal("Кот", cat);
-        carnivorousAviary.putAnimal("Рыба", fish);
+        carnivorousAviary.putAnimal(eagle.getId(), eagle);
+        carnivorousAviary.putAnimal(cat.getId(), cat);
+        carnivorousAviary.putAnimal(fish.getId(), fish);
+        carnivorousAviary.putAnimal(fish.getId(), fish);
 
-        carnivorousAviary.removeAnimal("Орел");
+        carnivorousAviary.removeAnimal(eagle.getId());
         System.out.println(carnivorousAviary);
 
-        Carnivorous animal = carnivorousAviary.getAnimal("Кот");
+        Carnivorous animal = carnivorousAviary.getAnimal(fish.getId());
         System.out.println(animal);
     }
 }

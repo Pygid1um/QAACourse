@@ -1,30 +1,32 @@
 package homework3.models.animals;
 
-import homework3.enams.AviarySize;
+import homework3.enums.AnimalsType;
+import homework3.enums.AviarySize;
+import homework3.exceptions.WrongAnimalsTypeException;
 import homework3.interfaces.animals.Run;
 import homework3.interfaces.animals.Voice;
 
 public class Cat extends Carnivorous implements Run, Voice {
-    private String type;
+    private AnimalsType catType;
 
-    public Cat(String name, int age, int hungerLevel, AviarySize animalSize, String type) {
+    public Cat(String name, int age, int hungerLevel, AviarySize animalSize, AnimalsType catType) {
         super(name, age, hungerLevel, animalSize);
         try {
-            if (type.equals("Дикий") || type.equals("Домашний")) {
-                this.type = type;
+            if (catType.equals(AnimalsType.WILD) || catType.equals(AnimalsType.DOMESTIC)) {
+                this.catType = catType;
             } else {
-            throw new Exception("Такого типа котика не бывает");
+            throw new WrongAnimalsTypeException("Такого типа котика не бывает");
             }
-        } catch (Exception exception) {
+        } catch (WrongAnimalsTypeException exception) {
             exception.printStackTrace();
         }
     }
 
     @Override
     public void run() {
-        if (this.getHungerLevel() <= 0) {
+        if (getHungerLevel() <= 0) {
             System.out.println("Кот не может бежать так как он голоден, он должен найти еду");
-        } else if (type.equals("Дикий")) {
+        } else if (catType.equals(AnimalsType.WILD)) {
             System.out.println("Кот может бежать со скоростью 20 км/ч");
         } else {
             System.out.println("Домашние коты практически не бегают, они толстые");
@@ -33,6 +35,6 @@ public class Cat extends Carnivorous implements Run, Voice {
 
         @Override
         public String voice() {
-            return type.equals("Домашний") ? "мяу" : "р-р-р";
+            return catType.equals(AnimalsType.DOMESTIC) ? "мяу" : "р-р-р";
         }
 }

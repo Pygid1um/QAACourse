@@ -1,6 +1,6 @@
 package homework3.models.general;
 
-import homework3.enams.AviarySize;
+import homework3.enums.AviarySize;
 import homework3.exceptions.AviarySizeOutOfBoundsException;
 import homework3.models.animals.Animals;
 
@@ -11,7 +11,7 @@ public class Aviary<T extends Animals> {
 
     private String aviaryName;
     private AviarySize aviarySize;
-    private Map<String, T> aviary = new HashMap<>();
+    private final Map<String, T> aviary = new HashMap<>();
 
     public Aviary(String aviaryName, AviarySize aviarySize) {
         this.aviaryName = aviaryName;
@@ -20,7 +20,7 @@ public class Aviary<T extends Animals> {
 
     public void putAnimal(String key, T value) {
         try {
-            if (value.getAnimalSize().ordinal() <= this.aviarySize.ordinal()) {
+            if (value.getAnimalSize().ordinal() <= aviarySize.ordinal()) {
                 aviary.put(key, value);
             } else {
                 throw new AviarySizeOutOfBoundsException("Размер животного больше чем размер вольера!");

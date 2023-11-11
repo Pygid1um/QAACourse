@@ -1,6 +1,6 @@
 package homework3.models.animals;
 
-import homework3.enams.AviarySize;
+import homework3.enums.AviarySize;
 import homework3.models.food.Food;
 
 import java.util.Objects;
@@ -10,11 +10,12 @@ public abstract class Animals {
     private int age;
     private int hungerLevel;
     private AviarySize animalSize;
+    private String id;
 
     public abstract void eat(Food food);
 
     public Animals(String name, int age, int hungerLevel, AviarySize animalSize) {
-        Objects.requireNonNull(name, "Имя не может быть null");
+        Objects.requireNonNull(name, "Имя животного не может быть null");
         this.name = name;
         this.age = age;
         this.hungerLevel = hungerLevel;
@@ -31,6 +32,10 @@ public abstract class Animals {
 
     public AviarySize getAnimalSize() {
         return animalSize;
+    }
+
+    public String getId() {
+        return this.id = String.valueOf(hashCode()) ;
     }
 
     protected void setHungerLevel(int hungerLevel) {
@@ -56,7 +61,9 @@ public abstract class Animals {
         return "Animals{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
+                ", hungerLevel=" + hungerLevel +
                 ", animalSize=" + animalSize +
+                ", id='" + id + '\'' +
                 '}';
     }
 }

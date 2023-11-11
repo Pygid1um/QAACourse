@@ -1,6 +1,6 @@
 package homework3.models.animals;
 
-import homework3.enams.AviarySize;
+import homework3.enums.AviarySize;
 import homework3.interfaces.animals.Swim;
 
 public class Fish extends Carnivorous implements Swim {
@@ -10,11 +10,11 @@ public class Fish extends Carnivorous implements Swim {
 
     @Override
     public void swim() {
-        if (this.getHungerLevel() <= 0) {
+        if (getHungerLevel() <= 0) {
             System.out.println("Рыба голодная, она должна найти еду");
         } else {
             System.out.println("Рыба плывет и ищет новую добычу");
-            this.setHungerLevel(this.getHungerLevel() - 1);
+            setHungerLevel(getHungerLevel() - 1);
         }
     }
 }

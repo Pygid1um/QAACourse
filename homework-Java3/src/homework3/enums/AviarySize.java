@@ -1,4 +1,4 @@
-package homework3.enams;
+package homework3.enums;
 
 public enum AviarySize {
     SMALL,

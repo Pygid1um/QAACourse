@@ -7,7 +7,7 @@ public abstract class Food {
     private int satisfyingHunger;
 
     public Food(String name, int satisfyingHunger) {
-        Objects.requireNonNull(name, "Имя не может быть null!");
+        Objects.requireNonNull(name, "Название продукта не может быть null!");
             this.name = name;
             this.satisfyingHunger = satisfyingHunger;
     }
