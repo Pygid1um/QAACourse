@@ -2,24 +2,15 @@ package homework3.models.animals;
 
 import homework3.enums.AnimalsType;
 import homework3.enums.AviarySize;
-import homework3.exceptions.WrongAnimalsTypeException;
 import homework3.interfaces.animals.Run;
 import homework3.interfaces.animals.Voice;
 
 public class Cat extends Carnivorous implements Run, Voice {
-    private AnimalsType catType;
+    private final AnimalsType catType;
 
     public Cat(String name, int age, int hungerLevel, AviarySize animalSize, AnimalsType catType) {
         super(name, age, hungerLevel, animalSize);
-        try {
-            if (catType.equals(AnimalsType.WILD) || catType.equals(AnimalsType.DOMESTIC)) {
-                this.catType = catType;
-            } else {
-            throw new WrongAnimalsTypeException("Такого типа котика не бывает");
-            }
-        } catch (WrongAnimalsTypeException exception) {
-            exception.printStackTrace();
-        }
+        this.catType = catType;
     }
 
     @Override

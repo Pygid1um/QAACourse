@@ -2,28 +2,19 @@ package homework3.models.animals;
 
 import homework3.enums.AnimalsType;
 import homework3.enums.AviarySize;
-import homework3.exceptions.WrongAnimalsTypeException;
 import homework3.interfaces.animals.Fly;
 import homework3.interfaces.animals.Run;
 import homework3.interfaces.animals.Swim;
 import homework3.interfaces.animals.Voice;
 
 public class Duck extends Herbivore implements Fly, Run, Swim, Voice {
-    private AnimalsType duckType;
+    private final AnimalsType duckType;
     private final boolean isMale;
 
     public Duck(String name, int age, int hungerLevel, AviarySize animalSize, AnimalsType duckType, boolean isMale) {
         super(name, age, hungerLevel, animalSize);
         this.isMale = isMale;
-        try {
-            if (duckType.equals(AnimalsType.WILD) || duckType.equals(AnimalsType.DOMESTIC)) {
-                this.duckType = duckType;
-            } else {
-                throw new WrongAnimalsTypeException("Такого типа утки не бывает");
-            }
-        } catch (WrongAnimalsTypeException exception) {
-            exception.printStackTrace();
-        }
+        this.duckType = duckType;
     }
 
     @Override
