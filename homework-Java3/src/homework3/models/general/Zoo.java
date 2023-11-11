@@ -46,15 +46,15 @@ public class Zoo {
         }
 
         Aviary<Carnivorous> carnivorousAviary = new Aviary<>("Клетка", AviarySize.LARGE);
-        carnivorousAviary.putAnimal(eagle.getId(), eagle);
-        carnivorousAviary.putAnimal(cat.getId(), cat);
-        carnivorousAviary.putAnimal(fish.getId(), fish);
-        carnivorousAviary.putAnimal(fish.getId(), fish);
+        carnivorousAviary.putAnimal(eagle.getName(), eagle);
+        carnivorousAviary.putAnimal(cat.getName(), cat);
+        carnivorousAviary.putAnimal(fish.getName(), fish);
+        carnivorousAviary.putAnimal(fish.getName(), fish);
 
-        carnivorousAviary.removeAnimal(eagle.getId());
+        carnivorousAviary.removeAnimal(eagle.getName());
         System.out.println(carnivorousAviary);
 
-        Carnivorous animal = carnivorousAviary.getAnimal(fish.getId());
+        Carnivorous animal = carnivorousAviary.getAnimal(fish.getName());
         System.out.println(animal);
     }
 }

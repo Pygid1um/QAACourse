@@ -10,7 +10,6 @@ public abstract class Animals {
     private int age;
     private int hungerLevel;
     private AviarySize animalSize;
-    private String id;
 
     public abstract void eat(Food food);
 
@@ -34,12 +33,12 @@ public abstract class Animals {
         return animalSize;
     }
 
-    public String getId() {
-        return this.id = String.valueOf(hashCode()) ;
-    }
-
     protected void setHungerLevel(int hungerLevel) {
         this.hungerLevel = hungerLevel;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -59,11 +58,9 @@ public abstract class Animals {
     @Override
     public String toString() {
         return "Animals{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
+                "age=" + age +
                 ", hungerLevel=" + hungerLevel +
                 ", animalSize=" + animalSize +
-                ", id='" + id + '\'' +
                 '}';
     }
 }
