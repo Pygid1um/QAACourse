@@ -2,7 +2,6 @@ package homework3.models.animals;
 
 import homework3.enums.AviarySize;
 import homework3.models.food.Food;
-
 import java.util.Objects;
 
 public abstract class Animals {
