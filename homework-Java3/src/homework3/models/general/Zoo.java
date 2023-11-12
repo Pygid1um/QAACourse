@@ -5,7 +5,6 @@ import homework3.enums.AviarySize;
 import homework3.interfaces.animals.Swim;
 import homework3.models.animals.*;
 import homework3.models.food.*;
-
 import java.util.ArrayList;
 
 public class Zoo {
