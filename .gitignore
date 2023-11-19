@@ -27,3 +27,14 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/.idea/.gitignore
+/.idea/compiler.xml
+/.idea/encodings.xml
+/.idea/jarRepositories.xml
+/Java2/Java2.iml
+/Java3/Java3.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/QAACourse.iml
+/.idea/uiDesigner.xml
+/.idea/vcs.xml
