@@ -1,5 +1,7 @@
 package homevork4.scanning;
 
+import homevork4.validator.Validator;
+
 import java.util.Scanner;
 
 /**
@@ -13,42 +15,45 @@ public class ScannerValues {
     private final Scanner scanner = new Scanner(System.in);
 
     /**
-     * Переменная для хранения первого введенного числа
+     * Переменная для хранения первого введенного числа после валидации
      */
-    private int firstNumber;
+    private static String resultValidationFirstNumber;
 
     /**
-     * Переменная для хранения второго введенного числа
+     * Переменная для хранения второго введенного числа после валидации
      */
-    private int secondNumber;
+    private static String resultValidationSecondNumber;
 
     /**
-     * Переменная для хранения введенного математического символа
+     * Переменная для хранения введенного математического символа после валидации
      */
-    private String sign;
+    private static String resultValidationSign;
 
     /**
      * Возвращает значение поля firstNumber
+     *
      * @return значение поля firstNumber
      */
-    public int getFirstNumber() {
-        return firstNumber;
+    public static String getResultValidationFirstNumber() {
+        return resultValidationFirstNumber;
     }
 
     /**
      * Возвращает значение поля secondNumber
+     *
      * @return значение поля secondNumber
      */
-    public int getSecondNumber() {
-        return secondNumber;
+    public static String getResultValidationSecondNumber() {
+        return resultValidationSecondNumber;
     }
 
     /**
      * Возвращает значение поля sign
+     *
      * @return значение поля sign
      */
-    public String getSign() {
-        return sign;
+    public static String getResultValidationSign() {
+        return resultValidationSign;
     }
 
     /**
@@ -56,10 +61,10 @@ public class ScannerValues {
      */
     public void scannerInput() {
         System.out.print("Введите первое число: ");
-        firstNumber = scanner.nextInt();
+        resultValidationFirstNumber = Validator.validateInputNumbers(scanner.next());
         System.out.print("Введите математический знак: ");
-        sign = scanner.next();
+        resultValidationSign = Validator.validateInputSign(scanner.next());
         System.out.print("Введите второе число: ");
-        secondNumber = scanner.nextInt();
+        resultValidationSecondNumber = Validator.validateInputNumbers(scanner.next());
     }
 }

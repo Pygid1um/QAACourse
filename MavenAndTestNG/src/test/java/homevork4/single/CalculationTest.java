@@ -1,9 +1,10 @@
 package homevork4.single;
 
 import homevork4.calculations.Calculations;
-import homevork4.exceptions.MyArithmeticException;
+import homevork4.exceptions.DivisionByZero;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.assertEquals;
 
 /**
@@ -25,14 +26,26 @@ public class CalculationTest {
     }
 
     /**
-     * Проверка суммы двух чисел
+     * Проверка суммы двух положительных чисел
      */
     @Test
-    public void testCalculationSumNumbers() {
-        int firstNumber = 6;
-        int secondNumber = 5;
-        int totalNumber = firstNumber + secondNumber;
-        int result = calculations.sum(firstNumber, secondNumber);
+    public void sumPositiveNumbers2() {
+        String firstNumber = "6";
+        String secondNumber = "5";
+        String totalNumber = String.valueOf(Integer.parseInt(firstNumber) + Integer.parseInt(secondNumber));
+        String result = calculations.sum(firstNumber, secondNumber);
+        assertEquals(result, totalNumber);
+    }
+
+    /**
+     * Проверка суммы двух отрицательных чисел
+     */
+    @Test
+    public void sumNegativeNumbers() {
+        String firstNumber = "-1";
+        String secondNumber = "-6";
+        String totalNumber = String.valueOf(Integer.parseInt(firstNumber) + Integer.parseInt(secondNumber));
+        String result = calculations.sum(firstNumber, secondNumber);
         assertEquals(result, totalNumber);
     }
 
@@ -40,23 +53,35 @@ public class CalculationTest {
      * Проверка суммы двух нулей
      */
     @Test
-    public void testCalculationSumZeroNumbers() {
-        int firstNumber = 0;
-        int secondNumber = 0;
-        int totalNumber = firstNumber + secondNumber;
-        int result = calculations.sum(firstNumber, secondNumber);
+    public void sumZeroNumbers() {
+        String firstNumber = "0";
+        String secondNumber = "0";
+        String totalNumber = String.valueOf(Integer.parseInt(firstNumber) + Integer.parseInt(secondNumber));
+        String result = calculations.sum(firstNumber, secondNumber);
         assertEquals(result, totalNumber);
     }
 
     /**
-     * Проверка разности двух чисел
+     * Проверка разности двух положительных чисел
      */
     @Test
-    public void testCalculationSubtractionNumbers() {
-        int firstNumber = 9;
-        int secondNumber = 4;
-        int totalNumber = firstNumber - secondNumber;
-        int result = calculations.subtraction(firstNumber, secondNumber);
+    public void subtractionPositiveNumbers() {
+        String firstNumber = "9";
+        String secondNumber = "4";
+        String totalNumber = String.valueOf(Integer.parseInt(firstNumber) - Integer.parseInt(secondNumber));
+        String result = calculations.subtraction(firstNumber, secondNumber);
+        assertEquals(result, totalNumber);
+    }
+
+    /**
+     * Проверка разности двух отрицательных чисел
+     */
+    @Test
+    public void subtractionNegativeNumbers() {
+        String firstNumber = "-9";
+        String secondNumber = "-8";
+        String totalNumber = String.valueOf(Integer.parseInt(firstNumber) - Integer.parseInt(secondNumber));
+        String result = calculations.subtraction(firstNumber, secondNumber);
         assertEquals(result, totalNumber);
     }
 
@@ -64,23 +89,35 @@ public class CalculationTest {
      * Проверка разности двух нулей
      */
     @Test
-    public void testCalculationSubtractionZeroNumbers() {
-        int firstNumber = 0;
-        int secondNumber = 0;
-        int totalNumber = firstNumber - secondNumber;
-        int result = calculations.subtraction(firstNumber, secondNumber);
+    public void subtractionZeroNumbers() {
+        String firstNumber = "0";
+        String secondNumber = "0";
+        String totalNumber = String.valueOf(Integer.parseInt(firstNumber) - Integer.parseInt(secondNumber));
+        String result = calculations.subtraction(firstNumber, secondNumber);
         assertEquals(result, totalNumber);
     }
 
     /**
-     * Проверка произведения двух чисел
+     * Проверка произведения двух положительных чисел
      */
     @Test
-    public void testCalculationMultiplicationNumbers() {
-        int firstNumber = 5;
-        int secondNumber = 2;
-        int totalNumber = firstNumber * secondNumber;
-        int result = calculations.multiplication(firstNumber, secondNumber);
+    public void multiplicationPositiveNumbers() {
+        String firstNumber = "5";
+        String secondNumber = "2";
+        String totalNumber = String.valueOf(Integer.parseInt(firstNumber) * Integer.parseInt(secondNumber));
+        String result = calculations.multiplication(firstNumber, secondNumber);
+        assertEquals(result, totalNumber);
+    }
+
+    /**
+     * Проверка произведения двух отрицательных чисел
+     */
+    @Test
+    public void multiplicationNegativeNumbers() {
+        String firstNumber = "-3";
+        String secondNumber = "-6";
+        String totalNumber = String.valueOf(Integer.parseInt(firstNumber) * Integer.parseInt(secondNumber));
+        String result = calculations.multiplication(firstNumber, secondNumber);
         assertEquals(result, totalNumber);
     }
 
@@ -88,33 +125,45 @@ public class CalculationTest {
      * Проверка произведения двух нулей
      */
     @Test
-    public void testCalculationMultiplicationZeroNumbers() {
-        int firstNumber = 0;
-        int secondNumber = 0;
-        int totalNumber = firstNumber * secondNumber;
-        int result = calculations.multiplication(firstNumber, secondNumber);
+    public void multiplicationZeroNumbers() {
+        String firstNumber = "0";
+        String secondNumber = "0";
+        String totalNumber = String.valueOf(Integer.parseInt(firstNumber) * Integer.parseInt(secondNumber));
+        String result = calculations.multiplication(firstNumber, secondNumber);
         assertEquals(result, totalNumber);
     }
 
     /**
-     * Проверка деления двух чисел
+     * Проверка деления двух положительных чисел
      */
     @Test
-    public void testCalculationDivisionNumbers() {
-        int firstNumber = 6;
-        int secondNumber = 2;
-        int totalNumber = firstNumber / secondNumber;
-        int result = calculations.division(firstNumber, secondNumber);
+    public void divisionNumbers() {
+        String firstNumber = "6";
+        String secondNumber = "2";
+        String totalNumber = String.valueOf(Integer.parseInt(firstNumber) / Integer.parseInt(secondNumber));
+        String result = calculations.division(firstNumber, secondNumber);
+        assertEquals(result, totalNumber);
+    }
+
+    /**
+     * Проверка деления двух отрицательных чисел
+     */
+    @Test
+    public void divisionNegativeNumbers() {
+        String firstNumber = "-8";
+        String secondNumber = "-4";
+        String totalNumber = String.valueOf(Integer.parseInt(firstNumber) / Integer.parseInt(secondNumber));
+        String result = calculations.division(firstNumber, secondNumber);
         assertEquals(result, totalNumber);
     }
 
     /**
      * Проверка деления на нуль
      */
-    @Test(expectedExceptions = MyArithmeticException.class)
-    public void testCalculationDivisionZeroNumbers() {
-        int firstNumber = 8;
-        int secondNumber = 0;
+    @Test(expectedExceptions = DivisionByZero.class)
+    public void divisionByZeroNumber() {
+        String firstNumber = "8";
+        String secondNumber = "0";
         calculations.division(firstNumber, secondNumber);
     }
 }

@@ -8,8 +8,8 @@ import homevork4.scanning.ScannerValues;
  * основные методы для проведения расчетов.
  */
 public class Run {
-    public static void main( String[] args )
-    {
+
+    public static void main(String[] args) {
         //Создание объекта класса Calculations
         Calculations calculations = new Calculations();
 
@@ -20,6 +20,6 @@ public class Run {
         scannerValues.scannerInput();
 
         //Вызов у объекта класса Calculations метода математического расчета
-        calculations.calculation(scannerValues.getFirstNumber(), scannerValues.getSecondNumber(), scannerValues.getSign());
+        calculations.calculation();
     }
 }

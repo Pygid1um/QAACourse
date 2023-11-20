@@ -3,7 +3,6 @@ package homevork4.single;
 import homevork4.exceptions.BadSignValue;
 import homevork4.exceptions.NonNumericInputException;
 import homevork4.validator.Validator;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -14,25 +13,12 @@ import static org.testng.Assert.assertEquals;
 public class ValidatorTest {
 
     /**
-     * Создание переменной с классом Validator
-     */
-    private Validator validator;
-
-     /**
-     * Метод, который выполняется перед каждым тестом, создает объект класса Validator
-     */
-    @BeforeMethod
-    public void setValidator() {
-        validator = new Validator();
-    }
-
-    /**
      * Проверка валидации ввода математического знака "+"
      */
     @Test
-    public void validateInputSignPlus() {
+    public void inputSignPlus() {
         String string = "+";
-        String result = validator.validateInputSign(string);
+        String result = Validator.validateInputSign(string);
         assertEquals(result, string);
     }
 
@@ -40,9 +26,9 @@ public class ValidatorTest {
      * Проверка валидации ввода математического знака "-"
      */
     @Test
-    public void validateInputSignMinus() {
+    public void inputSignMinus() {
         String string = "-";
-        String result = validator.validateInputSign(string);
+        String result = Validator.validateInputSign(string);
         assertEquals(result, string);
     }
 
@@ -50,9 +36,9 @@ public class ValidatorTest {
      * Проверка валидации ввода математического знака "*"
      */
     @Test
-    public void validateInputSignAterisk() {
+    public void inputSignAterisk() {
         String string = "*";
-        String result = validator.validateInputSign(string);
+        String result = Validator.validateInputSign(string);
         assertEquals(result, string);
     }
 
@@ -60,63 +46,102 @@ public class ValidatorTest {
      * Проверка валидации ввода математического знака "/"
      */
     @Test
-    public void validateInputSignSlash() {
+    public void inputSignSlash() {
         String string = "/";
-        String result = validator.validateInputSign(string);
+        String result = Validator.validateInputSign(string);
         assertEquals(result, string);
     }
 
     /**
-     * Проверка валидации ввода буквы
+     * Проверка валидации математического знака вводом буквы
      */
     @Test(expectedExceptions = BadSignValue.class)
-    public void validateInputWithLetter() {
+    public void inputSignWithLetter() {
         String string = "r";
-        validator.validateInputSign(string);
+        Validator.validateInputSign(string);
     }
 
     /**
-     * Проверка валидации строки с пробелом
+     * Проверка валидации математического знака пробелом
      */
     @Test(expectedExceptions = BadSignValue.class)
-    public void validateInputWithSpace() {
+    public void inputSignWithSpace() {
         String string = " ";
-        validator.validateInputSign(string);
+        Validator.validateInputSign(string);
     }
 
     /**
-     * Проверка валидации строки с пустой строкой
+     * Проверка валидации математического знака пустой строкой
      */
     @Test(expectedExceptions = BadSignValue.class)
-    public void validateInputWithEmpty() {
+    public void inputSignWithEmpty() {
         String string = "";
-        validator.validateInputSign(string);
+        Validator.validateInputSign(string);
     }
 
     /**
-     * Проверка валидации числа входящего в диапазон
+     * Проверка валидации положительного числа
      */
     @Test()
-    public void validateInputNumberPositive() {
-        int number = 5;
-        validator.validateInputNumbers(number);
+    public void inputPositiveNumber() {
+        String number = "5";
+        String result = Validator.validateInputNumbers(number);
+        assertEquals(number, result);
     }
 
     /**
-     * Проверка валидации числа меньше диапазона
+     * Проверка валидации отрицательного числа
      */
-    @Test(expectedExceptions = NonNumericInputException.class)
-        public void validateInputNegativeNumber() {
-        int number = -1;
-        validator.validateInputNumbers(number);
+    @Test()
+    public void inputNegativeNumber() {
+        String number = "-1";
+        String result = Validator.validateInputNumbers(number);
+        assertEquals(number, result);
     }
 
     /**
-     * Проверка валидации числа больше диапазона
+     * Проверка валидации нуля
+     */
+    @Test()
+    public void inputZeroNumber() {
+        String number = "0";
+        String result = Validator.validateInputNumbers(number);
+        assertEquals(number, result);
+    }
+
+    /**
+     * Проверка валидации ввода дробного число
      */
     @Test(expectedExceptions = NonNumericInputException.class)
-    public void validateInputBigNumber() {
-        int number = 10;
-        validator.validateInputNumbers(number);
+    public void inputFloatNumber() {
+        String number = "4.3";
+        Validator.validateInputNumbers(number);
+    }
+
+    /**
+     * Проверка валидации ввода пустой строки вместо числа
+     */
+    @Test(expectedExceptions = NonNumericInputException.class)
+    public void inputNumberWithEmpty() {
+        String number = "";
+        Validator.validateInputNumbers(number);
+    }
+
+    /**
+     * Проверка валидации ввода пробела вместо числа
+     */
+    @Test(expectedExceptions = NonNumericInputException.class)
+    public void inputNumberWithSpase() {
+        String number = " ";
+        Validator.validateInputNumbers(number);
+    }
+
+    /**
+     * Проверка валидации ввода пробела вместо числа
+     */
+    @Test(expectedExceptions = NonNumericInputException.class)
+    public void inputNumberWithLetter() {
+        String number = "I'am an autotOster";
+        Validator.validateInputNumbers(number);
     }
 }

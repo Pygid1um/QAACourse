@@ -10,11 +10,12 @@ public class Validator {
 
     /**
      * Метод валидирует правильность ввода математического знака
+     *
      * @param sign математический знак
      * @return значение параметра sign
      * @throws BadSignValue создается исключение в случае ввода не допустимого математического знака
      */
-    public String validateInputSign(String sign) {
+    public static String validateInputSign(String sign) {
         if (sign.matches("[+\\-*/]")) {
             return sign;
         } else {
@@ -24,16 +25,19 @@ public class Validator {
 
     /**
      * Метод валидирует правильность ввода чисел
+     *
      * @param number число для валидации
      * @return значение параметра number
      * @throws NonNumericInputException создается исключение в случае ввода не допустимого числа
      */
-    public int validateInputNumbers(int number) {
-        String numberString = String.valueOf(number);
-        if (numberString.matches("[0-9]")) {
-            return Integer.parseInt(numberString);
+    public static String validateInputNumbers(String number) {
+        if (number.matches("^-?(0|[1-9]\\d{0,9})$")) {
+            if (Integer.parseInt(number) >= Integer.MIN_VALUE || Integer.parseInt(number) <= Integer.MAX_VALUE) {
+                return number;
+            }
         } else {
-            throw new NonNumericInputException("Вы ввели не число или нельзя вводить числа меньше 0 и больше 9: " + number);
+            throw new NonNumericInputException("Введите целочисленное число входящее в диапазон Integer, а не: " + number);
         }
+        return number;
     }
 }
