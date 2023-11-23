@@ -98,6 +98,28 @@ public class CalculationTestsWithDataProvider {
     }
 
     /**
+     * DataProvider с тестовыми данными для проверки расчета метода calculation
+     *
+     * @return двумерный массив объектов
+     */
+    @DataProvider
+    public Object[][] calculationDataProvider() {
+        return new Object[][]{
+                {11, 3, "+", 14},
+                {-13, -4, "+", -17},
+                {0, 0, "+", 0},
+                {56, 6, "-", 50},
+                {-6, -6, "-", 0},
+                {0, 0, "-", 0},
+                {20, 10, "*", 200},
+                {-20, -10, "*", 200},
+                {0, 0, "*", 0},
+                {99, 9, "/", 11},
+                {-55, -5, "/", 11}
+        };
+    }
+
+    /**
      * Параметризованный позитивный тест расчета суммы
      *
      * @param firstNumber    первое число из тестовых данных DataProvider
@@ -106,7 +128,9 @@ public class CalculationTestsWithDataProvider {
      */
     @Test(dataProvider = "sumPositiveDataProvider")
     public void testPutDataPositiveSum(int firstNumber, int secondNumber, int expectedResult) {
-        int result = calculations.sum(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.sum();
         assertEquals(result, expectedResult);
     }
 
@@ -119,7 +143,9 @@ public class CalculationTestsWithDataProvider {
      */
     @Test(dataProvider = "subtractionPositiveDataProvider")
     public void testPutDataPositiveSubtraction(int firstNumber, int secondNumber, int expectedResult) {
-        int result = calculations.subtraction(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.subtraction();
         assertEquals(result, expectedResult);
     }
 
@@ -132,7 +158,9 @@ public class CalculationTestsWithDataProvider {
      */
     @Test(dataProvider = "multiplicationPositiveDataProvider")
     public void testPutDataPositiveMultiplication(int firstNumber, int secondNumber, int expectedResult) {
-        int result = calculations.multiplication(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.multiplication();
         assertEquals(result, expectedResult);
     }
 
@@ -145,7 +173,9 @@ public class CalculationTestsWithDataProvider {
      */
     @Test(dataProvider = "divisionPositiveDataProvider")
     public void testPutDataPositiveDivision(int firstNumber, int secondNumber, int expectedResult) {
-        int result = calculations.division(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.division();
         assertEquals(result, expectedResult);
     }
 
@@ -156,6 +186,24 @@ public class CalculationTestsWithDataProvider {
      */
     @Test(dataProvider = "divisionNegativeDataProvider", expectedExceptions = DivisionByZero.class)
     public void testPutDataNegativeCalculation(int number) {
-        calculations.division(number, number);
+        calculations.setValidatedFirstNumber(number);
+        calculations.setValidatedSecondNumber(number);
+        calculations.division();
+    }
+
+    /**
+     * Параметризованный тест метода calculation
+     * @param firstNumber первое число из тестовых данных DataProvider
+     * @param secondNumber второе число из тестовых данных DataProvider
+     * @param sign математический символ из тестовых данных DataProvider
+     * @param expected ожидаемый результат из DataProvider
+     */
+    @Test(dataProvider = "calculationDataProvider")
+    public void testPutDataCalculation(int firstNumber, int secondNumber, String sign, int expected) {
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        calculations.setValidatedSign(sign);
+        calculations.calculation();
+        assertEquals(calculations.getResult(), expected);
     }
 }

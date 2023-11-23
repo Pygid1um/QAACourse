@@ -33,10 +33,11 @@ public class CalculationTest {
         int firstNumber = 6;
         int secondNumber = 5;
         int totalNumber = firstNumber + secondNumber;
-        int result = calculations.sum(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.sum();
         assertEquals(result, totalNumber);
     }
-
 
     /**
      * Проверка суммы двух отрицательных чисел
@@ -46,7 +47,9 @@ public class CalculationTest {
         int firstNumber = -10;
         int secondNumber = -6;
         int totalNumber = firstNumber + secondNumber;
-        int result = calculations.sum(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.sum();
         assertEquals(result, totalNumber);
     }
 
@@ -58,7 +61,9 @@ public class CalculationTest {
         int firstNumber = 0;
         int secondNumber = 0;
         int totalNumber = firstNumber + secondNumber;
-        int result = calculations.sum(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.sum();
         assertEquals(result, totalNumber);
     }
 
@@ -70,7 +75,9 @@ public class CalculationTest {
         int firstNumber = 10;
         int secondNumber = 0;
         int totalNumber = firstNumber + secondNumber;
-        int result = calculations.sum(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.sum();
         assertEquals(result, totalNumber);
     }
 
@@ -82,7 +89,9 @@ public class CalculationTest {
         int firstNumber = 9;
         int secondNumber = 4;
         int totalNumber = firstNumber - secondNumber;
-        int result = calculations.subtraction(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.subtraction();
         assertEquals(result, totalNumber);
     }
 
@@ -94,7 +103,9 @@ public class CalculationTest {
         int firstNumber = -9;
         int secondNumber = -8;
         int totalNumber = firstNumber - secondNumber;
-        int result = calculations.subtraction(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.subtraction();
         assertEquals(result, totalNumber);
     }
 
@@ -106,7 +117,9 @@ public class CalculationTest {
         int firstNumber = 0;
         int secondNumber = 0;
         int totalNumber = firstNumber - secondNumber;
-        int result = calculations.subtraction(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.subtraction();
         assertEquals(result, totalNumber);
     }
 
@@ -118,7 +131,9 @@ public class CalculationTest {
         int firstNumber = 0;
         int secondNumber = 30;
         int totalNumber = firstNumber - secondNumber;
-        int result = calculations.subtraction(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.subtraction();
         assertEquals(result, totalNumber);
     }
 
@@ -130,7 +145,9 @@ public class CalculationTest {
         int firstNumber = 6;
         int secondNumber = 2;
         int totalNumber = firstNumber * secondNumber;
-        int result = calculations.multiplication(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.multiplication();
         assertEquals(result, totalNumber);
     }
 
@@ -142,7 +159,9 @@ public class CalculationTest {
         int firstNumber = -3;
         int secondNumber = -6;
         int totalNumber = firstNumber * secondNumber;
-        int result = calculations.multiplication(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.multiplication();
         assertEquals(result, totalNumber);
     }
 
@@ -154,7 +173,9 @@ public class CalculationTest {
         int firstNumber = 46;
         int secondNumber = 0;
         int totalNumber = firstNumber * secondNumber;
-        int result = calculations.multiplication(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.multiplication();
         assertEquals(result, totalNumber);
     }
 
@@ -166,7 +187,9 @@ public class CalculationTest {
         int firstNumber = 0;
         int secondNumber = 0;
         int totalNumber = firstNumber * secondNumber;
-        int result = calculations.multiplication(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.multiplication();
         assertEquals(result, totalNumber);
     }
 
@@ -179,7 +202,9 @@ public class CalculationTest {
         int firstNumber = 6;
         int secondNumber = 2;
         int totalNumber = firstNumber / secondNumber;
-        int result = calculations.division(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.division();
         assertEquals(result, totalNumber);
     }
 
@@ -191,7 +216,9 @@ public class CalculationTest {
         int firstNumber = -8;
         int secondNumber = -4;
         int totalNumber = firstNumber / secondNumber;
-        int result = calculations.division(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.division();
         assertEquals(result, totalNumber);
     }
 
@@ -203,7 +230,9 @@ public class CalculationTest {
         int firstNumber = 0;
         int secondNumber = -4;
         int totalNumber = firstNumber / secondNumber;
-        int result = calculations.division(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        int result = calculations.division();
         assertEquals(result, totalNumber);
     }
 
@@ -214,123 +243,184 @@ public class CalculationTest {
     public void divisionByZeroNumber() {
         int firstNumber = 8;
         int secondNumber = 0;
-        calculations.division(firstNumber, secondNumber);
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        calculations.division();
     }
 
+    /**
+     * Проверка суммы метода calculation, два положительных числа
+     */
     @Test
     public void calculationPositiveSum() {
-        calculations.setValidatedFirstNumber(11);
-        calculations.setValidatedSecondNumber(3);
-        calculations.setValidatedSign("+");
+        int firstNumber = 11;
+        int secondNumber = 3;
+        String sign = "+";
+        int totalNumber = firstNumber + secondNumber;
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        calculations.setValidatedSign(sign);
         calculations.calculation();
-        assertEquals(calculations.getResult(), 14);
+        assertEquals(calculations.getResult(), totalNumber);
     }
 
+    /**
+     * Проверка суммы метода calculation, два отрицательных числа
+     */
     @Test
     public void calculationNegativeSum() {
-        calculations.setValidatedFirstNumber(-11);
-        calculations.setValidatedSecondNumber(-4);
-        calculations.setValidatedSign("+");
+        int firstNumber = -11;
+        int secondNumber = -4;
+        String sign = "+";
+        int totalNumber = firstNumber + secondNumber;
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        calculations.setValidatedSign(sign);
         calculations.calculation();
-        assertEquals(calculations.getResult(), -15);
+        assertEquals(calculations.getResult(), totalNumber);
     }
 
-    @Test
-    public void calculationFirstNegativeSum() {
-        calculations.setValidatedFirstNumber(-18);
-        calculations.setValidatedSecondNumber(5);
-        calculations.setValidatedSign("+");
-        calculations.calculation();
-        assertEquals(calculations.getResult(), -13);
-    }
-
-    @Test
-    public void calculationSecondNegativeSum() {
-        calculations.setValidatedFirstNumber(156);
-        calculations.setValidatedSecondNumber(-33);
-        calculations.setValidatedSign("+");
-        calculations.calculation();
-        assertEquals(calculations.getResult(), 123);
-    }
-
-    @Test
-    public void calculationFirstZeroSum() {
-        calculations.setValidatedFirstNumber(0);
-        calculations.setValidatedSecondNumber(23);
-        calculations.setValidatedSign("+");
-        calculations.calculation();
-        assertEquals(calculations.getResult(), 23);
-    }
-
-    @Test
-    public void calculationSecondZeroSum() {
-        calculations.setValidatedFirstNumber(12);
-        calculations.setValidatedSecondNumber(0);
-        calculations.setValidatedSign("+");
-        calculations.calculation();
-        assertEquals(calculations.getResult(), 12);
-    }
-
+    /**
+     * Проверка суммы метода calculation, два числа нуль
+     */
     @Test
     public void calculationZeroSum() {
-        calculations.setValidatedFirstNumber(0);
-        calculations.setValidatedSecondNumber(0);
-        calculations.setValidatedSign("+");
+        int firstNumber = 0;
+        int secondNumber = 0;
+        String sign = "+";
+        int totalNumber = firstNumber + secondNumber;
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        calculations.setValidatedSign(sign);
         calculations.calculation();
-        assertEquals(calculations.getResult(), 0);
+        assertEquals(calculations.getResult(), totalNumber);
     }
 
+    /**
+     * Проверка разности метода calculation, два положительных числа
+     */
     @Test
     public void calculationPositiveSubtraction() {
-        calculations.setValidatedFirstNumber(56);
-        calculations.setValidatedSecondNumber(6);
-        calculations.setValidatedSign("-");
+        int firstNumber = 56;
+        int secondNumber = 6;
+        String sign = "-";
+        int totalNumber = firstNumber - secondNumber;
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        calculations.setValidatedSign(sign);
         calculations.calculation();
-        assertEquals(calculations.getResult(), 50);
+        assertEquals(calculations.getResult(), totalNumber);
     }
 
-    @Test
-    public void calculationFirstNegativeSubtraction() {
-        calculations.setValidatedFirstNumber(-16);
-        calculations.setValidatedSecondNumber(5);
-        calculations.setValidatedSign("-");
-        calculations.calculation();
-        assertEquals(calculations.getResult(), -9);
-    }
-
-    @Test
-    public void calculationSecondNegativeSubtraction() {
-        calculations.setValidatedFirstNumber(16);
-        calculations.setValidatedSecondNumber(-9);
-        calculations.setValidatedSign("-");
-        calculations.calculation();
-        assertEquals(calculations.getResult(), 25);
-    }
-
+    /**
+     * Проверка разности метода calculation, два отрицательных числа
+     */
     @Test
     public void calculationNegativeSubtraction() {
-        calculations.setValidatedFirstNumber(-16);
-        calculations.setValidatedSecondNumber(-9);
-        calculations.setValidatedSign("-");
+        int firstNumber = -16;
+        int secondNumber = -9;
+        String sign = "-";
+        int totalNumber = firstNumber - secondNumber;
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        calculations.setValidatedSign(sign);
         calculations.calculation();
-        assertEquals(calculations.getResult(), -7);
+        assertEquals(calculations.getResult(), totalNumber);
     }
 
+    /**
+     * Проверка разности метода calculation, два числа нуль
+     */
     @Test
-    public void calculationMultiplication() {
-        calculations.setValidatedFirstNumber(20);
-        calculations.setValidatedSecondNumber(10);
-        calculations.setValidatedSign("*");
+    public void calculationZeroSubtraction() {
+        int firstNumber = 0;
+        int secondNumber = 0;
+        String sign = "-";
+        int totalNumber = firstNumber - secondNumber;
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        calculations.setValidatedSign(sign);
         calculations.calculation();
-        assertEquals(calculations.getResult(), 200);
+        assertEquals(calculations.getResult(), totalNumber);
     }
 
+    /**
+     * Проверка произведения метода calculation, два положительных числа
+     */
     @Test
-    public void calculationDivision() {
-        calculations.setValidatedFirstNumber(88);
-        calculations.setValidatedSecondNumber(8);
-        calculations.setValidatedSign("/");
+    public void calculationPositiveMultiplication() {
+        int firstNumber = 20;
+        int secondNumber = 10;
+        String sign = "*";
+        int totalNumber = firstNumber * secondNumber;
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        calculations.setValidatedSign(sign);
         calculations.calculation();
-        assertEquals(calculations.getResult(), 11);
+        assertEquals(calculations.getResult(), totalNumber);
+    }
+
+    /**
+     * Проверка произведения метода calculation, два отрицательных числа
+     */
+    @Test
+    public void calculationNegativeMultiplication() {
+        int firstNumber = -23;
+        int secondNumber = -3;
+        String sign = "*";
+        int totalNumber = firstNumber * secondNumber;
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        calculations.setValidatedSign(sign);
+        calculations.calculation();
+        assertEquals(calculations.getResult(), totalNumber);
+    }
+
+    /**
+     * Проверка произведения метода calculation, два числа нуль
+     */
+    @Test
+    public void calculationZeroMultiplication() {
+        int firstNumber = 0;
+        int secondNumber = 0;
+        String sign = "*";
+        int totalNumber = firstNumber * secondNumber;
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        calculations.setValidatedSign(sign);
+        calculations.calculation();
+        assertEquals(calculations.getResult(), totalNumber);
+    }
+
+    /**
+     * Проверка деления метода calculation, два положительных числа
+     */
+    @Test
+    public void calculationPositiveDivision() {
+        int firstNumber = 88;
+        int secondNumber = 8;
+        String sign = "/";
+        int totalNumber = firstNumber / secondNumber;
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        calculations.setValidatedSign(sign);
+        calculations.calculation();
+        assertEquals(calculations.getResult(), totalNumber);
+    }
+
+    /**
+     * Проверка деления метода calculation, два отрицательных числа
+     */
+    @Test
+    public void calculationNegativeDivision() {
+        int firstNumber = -55;
+        int secondNumber = -5;
+        String sign = "/";
+        int totalNumber = firstNumber / secondNumber;
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        calculations.setValidatedSign(sign);
+        calculations.calculation();
+        assertEquals(calculations.getResult(), totalNumber);
     }
 }
