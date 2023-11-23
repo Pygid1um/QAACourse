@@ -33,10 +33,11 @@ public class CalculationTestsWithDataProvider {
      */
     @DataProvider
     public Object[][] sumPositiveDataProvider() {
-        return new String[][]{
-                {"4", "6", "10"},
-                {"-3", "-6", "-9"},
-                {"0", "0", "0"}
+        return new Integer[][]{
+                {4, 6, 10},
+                {-3, -6, -9},
+                {11, 0, 11},
+                {0, 0, 0}
         };
     }
 
@@ -47,10 +48,11 @@ public class CalculationTestsWithDataProvider {
      */
     @DataProvider
     public Object[][] subtractionPositiveDataProvider() {
-        return new String[][]{
-                {"8", "6", "2"},
-                {"-8", "-6", "-2"},
-                {"0", "0", "0"}
+        return new Integer[][]{
+                {8, 6, 2},
+                {-8, -6, -2},
+                {0, -6, 6},
+                {0, 0, 0}
         };
     }
 
@@ -61,10 +63,11 @@ public class CalculationTestsWithDataProvider {
      */
     @DataProvider
     public Object[][] multiplicationPositiveDataProvider() {
-        return new String[][]{
-                {"4", "4", "16"},
-                {"-4", "-6", "24"},
-                {"0", "0", "0"}
+        return new Integer[][]{
+                {4, 4, 16},
+                {-4, -6, 24},
+                {44, 0, 0},
+                {0, 0, 0}
         };
     }
 
@@ -75,9 +78,10 @@ public class CalculationTestsWithDataProvider {
      */
     @DataProvider
     public Object[][] divisionPositiveDataProvider() {
-        return new String[][]{
-                {"4", "2", "2"},
-                {"-8", "-2", "4"}
+        return new Integer[][]{
+                {4, 2, 2},
+                {-8, -2, 4},
+                {0, -2, 0}
         };
     }
 
@@ -88,8 +92,8 @@ public class CalculationTestsWithDataProvider {
      */
     @DataProvider
     public Object[][] divisionNegativeDataProvider() {
-        return new String[][]{
-                {"0", "0"}
+        return new Integer[][]{
+                {0}
         };
     }
 
@@ -101,8 +105,8 @@ public class CalculationTestsWithDataProvider {
      * @param expectedResult ожидаемый результат из DataProvider
      */
     @Test(dataProvider = "sumPositiveDataProvider")
-    public void testPutDataPositiveSum(String firstNumber, String secondNumber, String expectedResult) {
-        String result = calculations.sum(firstNumber, secondNumber);
+    public void testPutDataPositiveSum(int firstNumber, int secondNumber, int expectedResult) {
+        int result = calculations.sum(firstNumber, secondNumber);
         assertEquals(result, expectedResult);
     }
 
@@ -114,8 +118,8 @@ public class CalculationTestsWithDataProvider {
      * @param expectedResult ожидаемый результат из DataProvider
      */
     @Test(dataProvider = "subtractionPositiveDataProvider")
-    public void testPutDataPositiveSubtraction(String firstNumber, String secondNumber, String expectedResult) {
-        String result = calculations.subtraction(firstNumber, secondNumber);
+    public void testPutDataPositiveSubtraction(int firstNumber, int secondNumber, int expectedResult) {
+        int result = calculations.subtraction(firstNumber, secondNumber);
         assertEquals(result, expectedResult);
     }
 
@@ -127,8 +131,8 @@ public class CalculationTestsWithDataProvider {
      * @param expectedResult ожидаемый результат из DataProvider
      */
     @Test(dataProvider = "multiplicationPositiveDataProvider")
-    public void testPutDataPositiveMultiplication(String firstNumber, String secondNumber, String expectedResult) {
-        String result = calculations.multiplication(firstNumber, secondNumber);
+    public void testPutDataPositiveMultiplication(int firstNumber, int secondNumber, int expectedResult) {
+        int result = calculations.multiplication(firstNumber, secondNumber);
         assertEquals(result, expectedResult);
     }
 
@@ -140,19 +144,18 @@ public class CalculationTestsWithDataProvider {
      * @param expectedResult ожидаемый результат из DataProvider
      */
     @Test(dataProvider = "divisionPositiveDataProvider")
-    public void testPutDataPositiveDivision(String firstNumber, String secondNumber, String expectedResult) {
-        String result = calculations.division(firstNumber, secondNumber);
+    public void testPutDataPositiveDivision(int firstNumber, int secondNumber, int expectedResult) {
+        int result = calculations.division(firstNumber, secondNumber);
         assertEquals(result, expectedResult);
     }
 
     /**
      * Параметризованный негативный тест расчета деления
      *
-     * @param firstNumber  первое число из тестовых данных DataProvider
-     * @param secondNumber второе число из тестовых данных DataProvider
+     * @param number число из тестовых данных DataProvider
      */
     @Test(dataProvider = "divisionNegativeDataProvider", expectedExceptions = DivisionByZero.class)
-    public void testPutDataNegativeCalculation(String firstNumber, String secondNumber) {
-        calculations.division(firstNumber, secondNumber);
+    public void testPutDataNegativeCalculation(int number) {
+        calculations.division(number, number);
     }
 }

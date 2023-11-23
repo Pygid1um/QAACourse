@@ -80,12 +80,39 @@ public class ValidatorTest {
     }
 
     /**
+     * Проверка валидации математического знака значением null
+     */
+    @Test(expectedExceptions = BadSignValue.class)
+    public void inputSignWithNull() {
+        String string = null;
+        Validator.validateInputSign(string);
+    }
+
+    /**
+     * Проверка валидации математического знака спец. символом
+     */
+    @Test(expectedExceptions = BadSignValue.class)
+    public void inputSignWithSpecialSymbol() {
+        String string = "$";
+        Validator.validateInputSign(string);
+    }
+
+    /**
+     * Проверка валидации математического знака несколькими символами
+     */
+    @Test(expectedExceptions = BadSignValue.class)
+    public void inputSomeSigns() {
+        String string = "++";
+        Validator.validateInputSign(string);
+    }
+
+    /**
      * Проверка валидации положительного числа
      */
     @Test()
     public void inputPositiveNumber() {
-        String number = "5";
-        String result = Validator.validateInputNumbers(number);
+        int number = 5;
+        int result = Validator.validateInputNumbers(number);
         assertEquals(number, result);
     }
 
@@ -94,8 +121,8 @@ public class ValidatorTest {
      */
     @Test()
     public void inputNegativeNumber() {
-        String number = "-1";
-        String result = Validator.validateInputNumbers(number);
+        int number = -10;
+        int result = Validator.validateInputNumbers(number);
         assertEquals(number, result);
     }
 
@@ -104,44 +131,46 @@ public class ValidatorTest {
      */
     @Test()
     public void inputZeroNumber() {
-        String number = "0";
-        String result = Validator.validateInputNumbers(number);
+        int number = 0;
+        int result = Validator.validateInputNumbers(number);
         assertEquals(number, result);
     }
 
     /**
-     * Проверка валидации ввода дробного число
+     * Проверка валидации ввода максимального числа
+     */
+    @Test()
+    public void inputMaxNumber() {
+        int number = Integer.MAX_VALUE;
+        int result = Validator.validateInputNumbers(number);
+        assertEquals(number, result);
+    }
+
+    /**
+     * Проверка валидации ввода минимального числа
+     */
+    @Test()
+    public void inputMinNumber() {
+        int number = Integer.MIN_VALUE;
+        int result = Validator.validateInputNumbers(number);
+        assertEquals(number, result);
+    }
+
+    /**
+     * Проверка валидации ввода числа больше максимального
      */
     @Test(expectedExceptions = NonNumericInputException.class)
-    public void inputFloatNumber() {
-        String number = "4.3";
+    public void inputMoreMaxNumber() {
+        long number = 2147483648L;
         Validator.validateInputNumbers(number);
     }
 
     /**
-     * Проверка валидации ввода пустой строки вместо числа
+     * Проверка валидации числа меньше минимального
      */
     @Test(expectedExceptions = NonNumericInputException.class)
-    public void inputNumberWithEmpty() {
-        String number = "";
-        Validator.validateInputNumbers(number);
-    }
-
-    /**
-     * Проверка валидации ввода пробела вместо числа
-     */
-    @Test(expectedExceptions = NonNumericInputException.class)
-    public void inputNumberWithSpase() {
-        String number = " ";
-        Validator.validateInputNumbers(number);
-    }
-
-    /**
-     * Проверка валидации ввода пробела вместо числа
-     */
-    @Test(expectedExceptions = NonNumericInputException.class)
-    public void inputNumberWithLetter() {
-        String number = "I'am an autotOster";
+    public void inputMoreMinNumber() {
+        long number = -2147483649L;
         Validator.validateInputNumbers(number);
     }
 }

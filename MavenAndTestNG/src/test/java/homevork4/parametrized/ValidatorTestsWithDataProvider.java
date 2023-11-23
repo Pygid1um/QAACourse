@@ -38,7 +38,10 @@ public class ValidatorTestsWithDataProvider {
         return new String[][]{
                 {"Kurwa"},
                 {" "},
-                {""}
+                {""},
+                {"$"},
+                {"--"},
+                {null}
         };
     }
 
@@ -49,10 +52,12 @@ public class ValidatorTestsWithDataProvider {
      */
     @DataProvider
     public Object[][] numberPositiveDataProvider() {
-        return new String[][]{
-                {"-1"},
-                {"10"},
-                {"0"}
+        return new Long[][]{
+                {-1L},
+                {10L},
+                {(long) Integer.MAX_VALUE},
+                {(long) Integer.MIN_VALUE},
+                {0L}
         };
     }
 
@@ -63,11 +68,9 @@ public class ValidatorTestsWithDataProvider {
      */
     @DataProvider
     public Object[][] numberNegativeDataProvider() {
-        return new String[][]{
-                {"9.1"},
-                {""},
-                {" "},
-                {"Hello there!"}
+        return new Long[][]{
+                {2147483648L},
+                {-2147483649L},
         };
     }
 
@@ -98,8 +101,8 @@ public class ValidatorTestsWithDataProvider {
      * @param actual тестовые данные из DataProvider
      */
     @Test(dataProvider = "numberPositiveDataProvider")
-    public void testPutDataPositiveNumbers(String actual) {
-        String expected = Validator.validateInputNumbers(actual);
+    public void testPutDataPositiveNumbers(long actual) {
+        int expected = Validator.validateInputNumbers(actual);
         assertEquals(actual, expected);
     }
 
@@ -109,7 +112,7 @@ public class ValidatorTestsWithDataProvider {
      * @param actual тестовые данные из DataProvider
      */
     @Test(dataProvider = "numberNegativeDataProvider", expectedExceptions = NonNumericInputException.class)
-    public void testPutDataNumberNegativeValidator(String actual) {
+    public void testPutDataNumberNegativeValidator(long actual) {
         Validator.validateInputNumbers(actual);
     }
 }
