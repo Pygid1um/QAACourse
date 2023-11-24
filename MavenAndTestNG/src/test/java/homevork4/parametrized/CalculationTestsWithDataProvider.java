@@ -1,6 +1,7 @@
 package homevork4.parametrized;
 
 import homevork4.calculations.Calculations;
+import homevork4.exceptions.BadSignValue;
 import homevork4.exceptions.DivisionByZero;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -98,12 +99,12 @@ public class CalculationTestsWithDataProvider {
     }
 
     /**
-     * DataProvider с тестовыми данными для проверки расчета метода calculation
+     * DataProvider с позитивными тестовыми данными для проверки расчета метода calculation
      *
      * @return двумерный массив объектов
      */
     @DataProvider
-    public Object[][] calculationDataProvider() {
+    public Object[][] calculationPositiveDataProvider() {
         return new Object[][]{
                 {11, 3, "+", 14},
                 {-13, -4, "+", -17},
@@ -116,6 +117,25 @@ public class CalculationTestsWithDataProvider {
                 {0, 0, "*", 0},
                 {99, 9, "/", 11},
                 {-55, -5, "/", 11}
+        };
+    }
+
+    /**
+     * DataProvider с негативными тестовыми данными для проверки расчета метода calculation
+     *
+     * @return двумерный массив объектов
+     */
+    @DataProvider
+    public Object[][] calculationNegativeDataProvider() {
+        return new Object[][]{
+                {11, 3, "4", 14},
+                {-13, -4, "#", -17},
+                {-13, -4, "фыр-фыр", -17},
+                {-13, -4, "**", -17},
+                {-13, -4, null, -17},
+                {-13, -4, " ", -17},
+                {-13, -4, "", -17},
+                {-13, -4, "QWERTY123", -17}
         };
     }
 
@@ -192,18 +212,33 @@ public class CalculationTestsWithDataProvider {
     }
 
     /**
-     * Параметризованный тест метода calculation
+     * Параметризованный позитивный тест метода calculation
      * @param firstNumber первое число из тестовых данных DataProvider
      * @param secondNumber второе число из тестовых данных DataProvider
      * @param sign математический символ из тестовых данных DataProvider
      * @param expected ожидаемый результат из DataProvider
      */
-    @Test(dataProvider = "calculationDataProvider")
-    public void testPutDataCalculation(int firstNumber, int secondNumber, String sign, int expected) {
+    @Test(dataProvider = "calculationPositiveDataProvider")
+    public void testPutPositiveDataCalculation(int firstNumber, int secondNumber, String sign, int expected) {
         calculations.setValidatedFirstNumber(firstNumber);
         calculations.setValidatedSecondNumber(secondNumber);
         calculations.setValidatedSign(sign);
         calculations.calculation();
         assertEquals(calculations.getResult(), expected);
+    }
+
+    /**
+     * Параметризованный негативный тест метода calculation
+     * @param firstNumber первое число из тестовых данных DataProvider
+     * @param secondNumber второе число из тестовых данных DataProvider
+     * @param sign математический символ из тестовых данных DataProvider
+     * @param expected ожидаемый результат из DataProvider
+     */
+    @Test(dataProvider = "calculationNegativeDataProvider", expectedExceptions = BadSignValue.class)
+    public void testPutNegativeDataCalculation(int firstNumber, int secondNumber, String sign, int expected) {
+        calculations.setValidatedFirstNumber(firstNumber);
+        calculations.setValidatedSecondNumber(secondNumber);
+        calculations.setValidatedSign(sign);
+        calculations.calculation();
     }
 }

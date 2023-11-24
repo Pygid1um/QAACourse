@@ -111,8 +111,8 @@ public class ValidatorTest {
      */
     @Test()
     public void inputPositiveNumber() {
-        int number = 5;
-        int result = Validator.validateInputNumbers(number);
+        long number = 5L;
+        long result = Validator.validateInputNumbers(number);
         assertEquals(number, result);
     }
 
@@ -121,8 +121,8 @@ public class ValidatorTest {
      */
     @Test()
     public void inputNegativeNumber() {
-        int number = -10;
-        int result = Validator.validateInputNumbers(number);
+        long number = -10L;
+        long result = Validator.validateInputNumbers(number);
         assertEquals(number, result);
     }
 
@@ -131,8 +131,8 @@ public class ValidatorTest {
      */
     @Test()
     public void inputZeroNumber() {
-        int number = 0;
-        int result = Validator.validateInputNumbers(number);
+        long number = 0L;
+        long result = Validator.validateInputNumbers(number);
         assertEquals(number, result);
     }
 
@@ -141,8 +141,8 @@ public class ValidatorTest {
      */
     @Test()
     public void inputMaxNumber() {
-        int number = Integer.MAX_VALUE;
-        int result = Validator.validateInputNumbers(number);
+        long number = Integer.MAX_VALUE;
+        long result = Validator.validateInputNumbers(number);
         assertEquals(number, result);
     }
 
@@ -151,8 +151,8 @@ public class ValidatorTest {
      */
     @Test()
     public void inputMinNumber() {
-        int number = Integer.MIN_VALUE;
-        int result = Validator.validateInputNumbers(number);
+        long number = Integer.MIN_VALUE;
+        long result = Validator.validateInputNumbers(number);
         assertEquals(number, result);
     }
 

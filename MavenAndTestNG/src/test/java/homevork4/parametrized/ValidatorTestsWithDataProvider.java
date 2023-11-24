@@ -71,6 +71,7 @@ public class ValidatorTestsWithDataProvider {
         return new Long[][]{
                 {2147483648L},
                 {-2147483649L},
+                {null}
         };
     }
 
@@ -112,7 +113,7 @@ public class ValidatorTestsWithDataProvider {
      * @param actual тестовые данные из DataProvider
      */
     @Test(dataProvider = "numberNegativeDataProvider", expectedExceptions = NonNumericInputException.class)
-    public void testPutDataNumberNegativeValidator(long actual) {
+    public void testPutDataNumberNegativeValidator(Long actual) {
         Validator.validateInputNumbers(actual);
     }
 }

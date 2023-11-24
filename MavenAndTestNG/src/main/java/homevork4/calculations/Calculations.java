@@ -1,5 +1,6 @@
 package homevork4.calculations;
 
+import homevork4.exceptions.BadSignValue;
 import homevork4.exceptions.DivisionByZero;
 import homevork4.validator.Validator;
 
@@ -87,11 +88,16 @@ public class Calculations {
      * Метод в котором вызываются методы математического расчета
      */
     public void calculation() {
-        switch (validatedSign) {
-            case "+" -> result = sum();
-            case "-" -> result = subtraction();
-            case "*" -> result = multiplication();
-            case "/" -> result = division();
+        if (validatedSign != null) {
+            switch (validatedSign) {
+                case "+" -> result = sum();
+                case "-" -> result = subtraction();
+                case "*" -> result = multiplication();
+                case "/" -> result = division();
+                default -> throw new BadSignValue("Введенный символ не соответствует операциям расчета!");
+            }
+        } else {
+            throw new BadSignValue("Математический символ равен null");
         }
     }
 
