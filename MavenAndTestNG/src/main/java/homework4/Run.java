@@ -1,6 +1,6 @@
-package homevork4;
+package homework4;
 
-import homevork4.calculations.Calculations;
+import homework4.calculations.Calculations;
 
 /**
  * Класс является точкой входа в приложение Калькулятор

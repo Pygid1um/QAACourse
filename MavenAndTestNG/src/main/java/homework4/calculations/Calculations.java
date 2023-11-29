@@ -1,8 +1,8 @@
-package homevork4.calculations;
+package homework4.calculations;
 
-import homevork4.exceptions.BadSignValue;
-import homevork4.exceptions.DivisionByZero;
-import homevork4.validator.Validator;
+import homework4.exceptions.BadSignValue;
+import homework4.exceptions.DivisionByZero;
+import homework4.validator.Validator;
 
 import java.util.Scanner;
 
