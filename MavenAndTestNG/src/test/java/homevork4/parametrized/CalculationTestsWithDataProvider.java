@@ -3,6 +3,7 @@ package homevork4.parametrized;
 import homevork4.calculations.Calculations;
 import homevork4.exceptions.BadSignValue;
 import homevork4.exceptions.DivisionByZero;
+import io.qameta.allure.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -12,6 +13,8 @@ import static org.testng.Assert.assertEquals;
 /**
  * Набор тестов с DataProvider для класса Calculation
  */
+@Epic("Calculation. Parameterized tests")
+@Owner("Будущий автотестер, Аносов Д.С.")
 public class CalculationTestsWithDataProvider {
 
     /**
@@ -146,7 +149,11 @@ public class CalculationTestsWithDataProvider {
      * @param secondNumber   второе число из тестовых данных DataProvider
      * @param expectedResult ожидаемый результат из DataProvider
      */
-    @Test(dataProvider = "sumPositiveDataProvider")
+    @Feature("Проверка математических расчетов с Data Provider")
+    @Story("Позитивные проверки расчета суммы с Data Provider")
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Тест проверяет расчеты суммы с Data Provider")
+    @Test(dataProvider = "sumPositiveDataProvider", description = "Параметризованный позитивный тест расчета суммы")
     public void testPutDataPositiveSum(int firstNumber, int secondNumber, int expectedResult) {
         calculations.setValidatedFirstNumber(firstNumber);
         calculations.setValidatedSecondNumber(secondNumber);
@@ -161,7 +168,11 @@ public class CalculationTestsWithDataProvider {
      * @param secondNumber   второе число из тестовых данных DataProvider
      * @param expectedResult ожидаемый результат из DataProvider
      */
-    @Test(dataProvider = "subtractionPositiveDataProvider")
+    @Feature("Проверка математических расчетов с Data Provider")
+    @Story("Позитивные проверки расчета разности с Data Provider")
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Тест проверяет расчеты разности с Data Provider")
+    @Test(dataProvider = "subtractionPositiveDataProvider", description = "Параметризованный позитивный тест расчета разности")
     public void testPutDataPositiveSubtraction(int firstNumber, int secondNumber, int expectedResult) {
         calculations.setValidatedFirstNumber(firstNumber);
         calculations.setValidatedSecondNumber(secondNumber);
@@ -176,7 +187,11 @@ public class CalculationTestsWithDataProvider {
      * @param secondNumber   второе число из тестовых данных DataProvider
      * @param expectedResult ожидаемый результат из DataProvider
      */
-    @Test(dataProvider = "multiplicationPositiveDataProvider")
+    @Feature("Проверка математических расчетов с Data Provider")
+    @Story("Позитивные проверки расчета произведения с Data Provider")
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Тест проверяет расчеты произведения с Data Provider")
+    @Test(dataProvider = "multiplicationPositiveDataProvider", description = "Параметризованный позитивный тест расчета произведения")
     public void testPutDataPositiveMultiplication(int firstNumber, int secondNumber, int expectedResult) {
         calculations.setValidatedFirstNumber(firstNumber);
         calculations.setValidatedSecondNumber(secondNumber);
@@ -191,7 +206,11 @@ public class CalculationTestsWithDataProvider {
      * @param secondNumber   второе число из тестовых данных DataProvider
      * @param expectedResult ожидаемый результат из DataProvider
      */
-    @Test(dataProvider = "divisionPositiveDataProvider")
+    @Feature("Проверка математических расчетов с Data Provider")
+    @Story("Позитивные проверки расчета деления с Data Provider")
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Тест проверяет расчеты деления с Data Provider")
+    @Test(dataProvider = "divisionPositiveDataProvider", description = "Параметризованный позитивный тест расчета деления")
     public void testPutDataPositiveDivision(int firstNumber, int secondNumber, int expectedResult) {
         calculations.setValidatedFirstNumber(firstNumber);
         calculations.setValidatedSecondNumber(secondNumber);
@@ -204,7 +223,11 @@ public class CalculationTestsWithDataProvider {
      *
      * @param number число из тестовых данных DataProvider
      */
-    @Test(dataProvider = "divisionNegativeDataProvider", expectedExceptions = DivisionByZero.class)
+    @Feature("Проверка математических расчетов с Data Provider")
+    @Story("Негативные проверки расчета деления с Data Provider")
+    @Severity(SeverityLevel.CRITICAL)
+    @Test(dataProvider = "divisionNegativeDataProvider", expectedExceptions = DivisionByZero.class,
+    description = "Параметризованный негативный тест расчета деления")
     public void testPutDataNegativeCalculation(int number) {
         calculations.setValidatedFirstNumber(number);
         calculations.setValidatedSecondNumber(number);
@@ -218,7 +241,10 @@ public class CalculationTestsWithDataProvider {
      * @param sign математический символ из тестовых данных DataProvider
      * @param expected ожидаемый результат из DataProvider
      */
-    @Test(dataProvider = "calculationPositiveDataProvider")
+    @Feature("Проверка математических расчетов метода calculation с Data Provider")
+    @Story("Позитивные проверки расчета деления с Data Provider")
+    @Severity(SeverityLevel.CRITICAL)
+    @Test(dataProvider = "calculationPositiveDataProvider", description = "Параметризованный позитивный тест метода calculation")
     public void testPutPositiveDataCalculation(int firstNumber, int secondNumber, String sign, int expected) {
         calculations.setValidatedFirstNumber(firstNumber);
         calculations.setValidatedSecondNumber(secondNumber);
@@ -234,7 +260,11 @@ public class CalculationTestsWithDataProvider {
      * @param sign математический символ из тестовых данных DataProvider
      * @param expected ожидаемый результат из DataProvider
      */
-    @Test(dataProvider = "calculationNegativeDataProvider", expectedExceptions = BadSignValue.class)
+    @Feature("Проверка математических расчетов метода calculation с Data Provider")
+    @Story("Негативные проверки расчета деления с Data Provider")
+    @Severity(SeverityLevel.CRITICAL)
+    @Test(dataProvider = "calculationNegativeDataProvider", expectedExceptions = BadSignValue.class,
+    description = "Параметризованный негативный тест метода calculation")
     public void testPutNegativeDataCalculation(int firstNumber, int secondNumber, String sign, int expected) {
         calculations.setValidatedFirstNumber(firstNumber);
         calculations.setValidatedSecondNumber(secondNumber);

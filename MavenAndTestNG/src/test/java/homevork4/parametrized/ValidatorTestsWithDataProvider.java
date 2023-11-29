@@ -3,6 +3,7 @@ package homevork4.parametrized;
 import homevork4.exceptions.BadSignValue;
 import homevork4.exceptions.NonNumericInputException;
 import homevork4.validator.Validator;
+import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -11,6 +12,8 @@ import static org.testng.Assert.assertEquals;
 /**
  * Набор тестов с DataProvider для класса Validator
  */
+@Epic("Validator. Parameterized tests")
+@Owner("Будущий автотестер, Аносов Д.С.")
 public class ValidatorTestsWithDataProvider {
 
     /**
@@ -76,22 +79,32 @@ public class ValidatorTestsWithDataProvider {
     }
 
     /**
-     * Параметризованный позитивный тест ввода математических символов
+     * Параметризованный позитивный тест ввода математических знаков
      *
      * @param actual тестовые данные из DataProvider
      */
-    @Test(dataProvider = "signPositiveDataProvider")
+    @Feature("Проверка ввода математического знака с Data Provider")
+    @Story("Позитивные проверки ввода знака с Data Provider")
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Тест проверяет введение математических знаков с Data Provider")
+    @Test(dataProvider = "signPositiveDataProvider",
+            description = "Параметризованный позитивный тест ввода математических знаков")
     public void testPutDataPositiveSing(String actual) {
         String expected = Validator.validateInputSign(actual);
         assertEquals(actual, expected);
     }
 
     /**
-     * Параметризованный негативный тест ввода математических символов
+     * Параметризованный негативный тест ввода математических знаков
      *
      * @param actual тестовые данные из DataProvider
      */
-    @Test(dataProvider = "signNegativeDataProvider", expectedExceptions = BadSignValue.class)
+    @Feature("Проверка ввода математического знака с Data Provider")
+    @Story("Негативные проверки ввода знака с Data Provider")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Тест проверяет введение математических знаков с Data Provider")
+    @Test(dataProvider = "signNegativeDataProvider", expectedExceptions = BadSignValue.class,
+    description = "Параметризованный негативный тест ввода математических знаков")
     public void testPutDataNegativeSing(String actual) {
         Validator.validateInputSign(actual);
     }
@@ -101,7 +114,11 @@ public class ValidatorTestsWithDataProvider {
      *
      * @param actual тестовые данные из DataProvider
      */
-    @Test(dataProvider = "numberPositiveDataProvider")
+    @Feature("Проверка ввода чисел с Data Provider")
+    @Story("Позитивные проверки ввода чисел с Data Provider")
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Тест проверяет введение чисел с Data Provider")
+    @Test(dataProvider = "numberPositiveDataProvider", description = "Параметризованный позитивный тест ввода чисел")
     public void testPutDataPositiveNumbers(long actual) {
         int expected = Validator.validateInputNumbers(actual);
         assertEquals(actual, expected);
@@ -112,7 +129,12 @@ public class ValidatorTestsWithDataProvider {
      *
      * @param actual тестовые данные из DataProvider
      */
-    @Test(dataProvider = "numberNegativeDataProvider", expectedExceptions = NonNumericInputException.class)
+    @Feature("Проверка ввода чисел с Data Provider")
+    @Story("Негативные проверки ввода чисел с Data Provider")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Тест проверяет введение чисел с Data Provider")
+    @Test(dataProvider = "numberNegativeDataProvider", expectedExceptions = NonNumericInputException.class,
+    description = "Параметризованный негативный тест ввода чисел")
     public void testPutDataNumberNegativeValidator(Long actual) {
         Validator.validateInputNumbers(actual);
     }
