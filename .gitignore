@@ -1,6 +1,5 @@
-### IntelliJ IDEA ###
 /out/
 /.idea/
-/MavenAndTestNG/target/
-/MavenAndTestNG/.allure/
-/MavenAndTestNG/src/test/resources/
+**/target/
+**/.allure/
+**/src/test/resources/
