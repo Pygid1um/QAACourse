@@ -15,8 +15,8 @@ public class WriterTests {
     @Test(description = "Проверка полученного текста")
     public void checkWriterText() {
         Writer writer = new Writer();
-        String actual = "Hello World!";
-        String expectedResult = writer.getText();
+        String expectedResult = "Hello World!";
+        String actual = writer.getText();
         assertEquals(actual, expectedResult);
     }
 }
