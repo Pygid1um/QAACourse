@@ -1,8 +1,8 @@
-package homevork4.parametrized;
+package homework4.parametrized;
 
-import homevork4.calculations.Calculations;
-import homevork4.exceptions.BadSignValue;
-import homevork4.exceptions.DivisionByZero;
+import homework4.calculations.Calculations;
+import homework4.exceptions.BadSignValue;
+import homework4.exceptions.DivisionByZero;
 import io.qameta.allure.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;

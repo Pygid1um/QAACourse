@@ -1,7 +1,7 @@
-package homevork4.single;
+package homework4.single;
 
-import homevork4.calculations.Calculations;
-import homevork4.exceptions.DivisionByZero;
+import homework4.calculations.Calculations;
+import homework4.exceptions.DivisionByZero;
 import io.qameta.allure.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

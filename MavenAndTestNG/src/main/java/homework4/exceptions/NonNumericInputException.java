@@ -1,4 +1,4 @@
-package homevork4.exceptions;
+package homework4.exceptions;
 
 /**
  * Исключение в случае ввода числа выходящего за переделы диапазона Integer или ввода не числа

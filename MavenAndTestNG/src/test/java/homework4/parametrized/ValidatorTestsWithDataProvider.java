@@ -1,8 +1,8 @@
-package homevork4.parametrized;
+package homework4.parametrized;
 
-import homevork4.exceptions.BadSignValue;
-import homevork4.exceptions.NonNumericInputException;
-import homevork4.validator.Validator;
+import homework4.exceptions.BadSignValue;
+import homework4.exceptions.NonNumericInputException;
+import homework4.validator.Validator;
 import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

@@ -1,4 +1,4 @@
-package homevork4.exceptions;
+package homework4.exceptions;
 
 /**
  * Исключение в случае ввода некорректного математического знака

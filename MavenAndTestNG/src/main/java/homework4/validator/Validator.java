@@ -1,7 +1,7 @@
-package homevork4.validator;
+package homework4.validator;
 
-import homevork4.exceptions.BadSignValue;
-import homevork4.exceptions.NonNumericInputException;
+import homework4.exceptions.BadSignValue;
+import homework4.exceptions.NonNumericInputException;
 
 /**
  * Класс отвечает за валидацию введенных чисел и математического знака

@@ -2,4 +2,7 @@
 /.idea/
 **/target/
 **/.allure/
-**/src/test/resources/
+**/resources/
+*/.gradle/
+*/build/
+*.iml
