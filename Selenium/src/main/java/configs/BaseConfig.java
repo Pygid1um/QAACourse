@@ -9,8 +9,16 @@ import org.aeonbits.owner.Config;
 public interface BaseConfig extends Config {
 
     /**
-     * Метод возвращает параметр seleniumInput из config.properties
+     * Метод возвращает параметр url из config.properties
+     *
      * @return параметр строки поиска
      */
     String url();
+
+    /**
+     * Метод возвращает параметр linkAttribute из avito_tests_config.properties
+     *
+     * @return параметр атрибута ссылки
+     */
+    String linkAttribute();
 }

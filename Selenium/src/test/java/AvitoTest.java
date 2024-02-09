@@ -11,17 +11,17 @@ public class AvitoTest extends BaseTest {
 
     @Test(description = "Вывод первых 5 ссылок результатов поиска в консоль")
     @Feature("Вывод результатов поиска")
-    public void draft() {
+    public void testSearchAvito() {
         new HomePage(driver)
-                .selectAllCategories()
+                .expansionAllCategories()
                 .selectCategoryElectronics()
                 .selectCategoryConsumables()
                 .clickCheckBox()
-                .inputGoodsInSearchField()
+                .inputGoodsInSearchField("Принтер")
                 .selectCityPopUp()
-                .searchCity()
-                .showAds()
-                .chooseInDropDown()
+                .selectCity("Владивосток")
+                .selectAllAds()
+                .clickOnCheckBox()
                 .printFirstUrlSpecifiedNumber(5);
     }
 }

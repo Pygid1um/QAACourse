@@ -25,13 +25,13 @@ public class BaseTest {
      */
     @BeforeMethod
     public void setUp() {
-       driver = new ChromeDriver();
-       driver.manage().window().maximize();
-       driver.get(config.url());
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get(config.url());
     }
 
     /**
-     * Общие настройки для всех тестов перед выполнением каждого
+     * Общие настройки для всех тестов после выполнением каждого
      */
     @AfterMethod
     public void closeDriver() {

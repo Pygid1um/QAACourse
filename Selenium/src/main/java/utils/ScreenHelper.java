@@ -5,6 +5,7 @@ import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.openqa.selenium.WebDriver;
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
+
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
@@ -15,6 +16,7 @@ public class ScreenHelper {
 
     /**
      * Делает скриншот для allure отчета
+     *
      * @param driver экземпляр драйвера
      */
     @Attachment

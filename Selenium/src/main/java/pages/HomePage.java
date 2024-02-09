@@ -1,6 +1,6 @@
 package pages;
 
-import configs.AvitoConfig;
+import configs.BaseConfig;
 import io.qameta.allure.Step;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.By;
@@ -22,19 +22,19 @@ public class HomePage {
     /**
      * Экземпляр конфигурации с параметрами для Avito тестов
      */
-    AvitoConfig avitoConfig = ConfigFactory.create(AvitoConfig.class, System.getProperties());
+    private final BaseConfig config = ConfigFactory.create(BaseConfig.class, System.getProperties());
 
     /**
      * Элемент раскрывающий все категории товаров
      */
     @FindBy(xpath = "//div[@class='top-rubricator-rubricatorButton-SoKyQ']")
-    private WebElement allCategories;
+    private WebElement allCategoriesButton;
 
     /**
      * Элемент выбора категории 'Электроника'
      */
     @FindBy(xpath = "//p[text()='Электроника']")
-    private WebElement categoryElectronics;
+    private WebElement electronicsCategory;
 
     /**
      * Элемент выбора подкатегории 'Оргтехника и расходники'
@@ -76,13 +76,13 @@ public class HomePage {
      * Элемент с городом Владивосток
      */
     @FindBy(xpath = "//strong[text()='Владивосток']")
-    private WebElement city;
+    private WebElement cityDropDown;
 
     /**
      * Элемент выбора n объявлений
      */
     @FindBy(xpath = "//button[@class='desktop-xujs2d']")
-    private WebElement showAds;
+    private WebElement selectAds;
 
     /**
      * Элемент раскрывающий выпадающий список 'Сортировка'
@@ -98,6 +98,7 @@ public class HomePage {
 
     /**
      * Конструктор создания HomePage
+     *
      * @param driver драйвер для управления браузером
      */
     public HomePage(WebDriver driver) {
@@ -107,31 +108,34 @@ public class HomePage {
 
     /**
      * Метод раскрытия всех категорий на главной странице
+     *
      * @return текущая страница
      */
     @Step("Раскрытие списка 'Все категории'")
-    public HomePage selectAllCategories() {
-        Waiters.waitUntilVisible(driver, allCategories);
-        allCategories.click();
+    public HomePage expansionAllCategories() {
+        Waiters.waitUntilVisible(driver, allCategoriesButton);
+        allCategoriesButton.click();
         ScreenHelper.makeScreenShot(driver);
         return this;
     }
 
     /**
      * Метод для выбора категории 'Электроника'
+     *
      * @return текущая страница
      */
     @Step("Выбор категории 'Электроника'")
     public HomePage selectCategoryElectronics() {
         switchToWindow();
-        Waiters.waitUntilVisible(driver, categoryElectronics);
-        coverByElement(categoryElectronics);
+        Waiters.waitUntilVisible(driver, electronicsCategory);
+        coverByElement(electronicsCategory);
         ScreenHelper.makeScreenShot(driver);
         return this;
     }
 
     /**
      * Метод для выбора подкатегории 'Оргтехника и расходники'
+     *
      * @return текущая страница
      */
     @Step("Выбор подкатегории 'Оргтехника и расходники'")
@@ -143,6 +147,7 @@ public class HomePage {
 
     /**
      * Метод выбора чекбокса 'Новые'
+     *
      * @return текущая страница
      */
     @Step("Клик чекбокса 'Новые'")
@@ -154,17 +159,19 @@ public class HomePage {
 
     /**
      * Метод ввода товара в поле поиска
+     *
      * @return текущая страница
      */
     @Step("Ввод товара в поле поиска")
-    public HomePage inputGoodsInSearchField() {
-        searchFieldGoods.sendKeys(avitoConfig.inputSearchPrinter());
+    public HomePage inputGoodsInSearchField(String product) {
+        searchFieldGoods.sendKeys(product);
         ScreenHelper.makeScreenShot(driver);
         return this;
     }
 
     /**
      * Метод перехода для выбора города
+     *
      * @return текущая страница
      */
     @Step("Раскрытие поп-апа выбора города")
@@ -177,37 +184,40 @@ public class HomePage {
 
     /**
      * Метод выбора города
+     *
      * @return текущая страница
      */
     @Step("Выбор города")
-    public HomePage searchCity() {
+    public HomePage selectCity(String searchingCity) {
         Waiters.waitUntilVisible(driver, clearCitySearchField);
         clearCitySearchField.click();
-        searchFieldCities.sendKeys(avitoConfig.inputSearchCity());
-        Waiters.waitUntilVisible(driver, city);
-        city.click();
+        searchFieldCities.sendKeys(searchingCity);
+        Waiters.waitUntilVisible(driver, cityDropDown);
+        cityDropDown.click();
         ScreenHelper.makeScreenShot(driver);
         return this;
     }
 
     /**
      * Метод выбирающий n объявлений
+     *
      * @return текущая страница
      */
     @Step("Выбор найденных объявлений в выбранном городе")
-    public HomePage showAds() {
-        Waiters.waitUntilVisible(driver, showAds);
-        showAds.click();
+    public HomePage selectAllAds() {
+        Waiters.waitUntilVisible(driver, selectAds);
+        selectAds.click();
         ScreenHelper.makeScreenShot(driver);
         return this;
     }
 
     /**
      * Метод с выбором 'Дороже' в выпадающем списке
+     *
      * @return текущая страница
      */
     @Step("Клик чекбокса 'Дороже'")
-    public HomePage chooseInDropDown() {
+    public HomePage clickOnCheckBox() {
         Waiters.waitUntilVisible(driver, dropDownList);
         dropDownList.click();
         Waiters.waitUntilVisible(driver, chooseExpensive);
@@ -218,12 +228,13 @@ public class HomePage {
 
     /**
      * Метод печати первых n ссылок элементов
+     *
      * @param count количество ссылок
      */
     @Step("Вывод в консоль ссылок первых результатов запроса")
     public void printFirstUrlSpecifiedNumber(int count) {
         for (int i = 1; i <= count; i++) {
-            System.out.println(getSearchResultElementByNumber(i).getAttribute(avitoConfig.linkAttribute()));
+            System.out.println(getSearchResultElementByNumber(i).getAttribute(config.linkAttribute()));
         }
     }
 
@@ -236,6 +247,7 @@ public class HomePage {
 
     /**
      * Метод для наведения курсора мыши на элемент страницы
+     *
      * @param element элемент на который наводится курсор мыши
      */
     private void coverByElement(WebElement element) {
@@ -245,10 +257,11 @@ public class HomePage {
 
     /**
      * Метод получения элемента по номеру
+     *
      * @param elementNumber номер элемента
      * @return элемент результата поиска
      */
-    private WebElement getSearchResultElementByNumber(int elementNumber){
+    private WebElement getSearchResultElementByNumber(int elementNumber) {
         return driver.findElement(By.xpath("//div[@class='items-items-kAJAg']/div[" + elementNumber + "]//a"));
     }
 }
