@@ -60,6 +60,6 @@ public abstract class Animals {
                 "age=" + age +
                 ", hungerLevel=" + hungerLevel +
                 ", animalSize=" + animalSize +
-                '}';
+                "}";
     }
 }

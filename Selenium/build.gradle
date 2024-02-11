@@ -1,0 +1,41 @@
+plugins {
+    id "io.qameta.allure" version "2.9.6"
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+allure {
+    report{
+        version.set("2.24.0")
+    }
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.testng/testng
+    testImplementation 'org.testng:testng:7.8.0'
+    // https://mvnrepository.com/artifact/io.qameta.allure/allure-testng
+    implementation 'io.qameta.allure:allure-testng:2.24.0'
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    implementation 'org.seleniumhq.selenium:selenium-java:4.16.1'
+    // https://mvnrepository.com/artifact/ru.yandex.qatools.ashot/ashot
+    implementation 'ru.yandex.qatools.ashot:ashot:1.5.4'
+    // https://mvnrepository.com/artifact/org.aeonbits.owner/owner
+    implementation 'org.aeonbits.owner:owner:1.0.12'
+    // https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
+    implementation 'io.github.bonigarcia:webdrivermanager:5.5.3'
+}
+
+test {
+    useTestNG()
+    systemProperties(System.getProperties())
+}
