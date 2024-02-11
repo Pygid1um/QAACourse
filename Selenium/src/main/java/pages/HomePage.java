@@ -1,8 +1,6 @@
 package pages;
 
-import configs.BaseConfig;
 import io.qameta.allure.Step;
-import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,17 +10,13 @@ import org.openqa.selenium.support.PageFactory;
 import utils.ScreenHelper;
 import utils.Waiters;
 
+
 public class HomePage {
 
     /**
      * Экземпляр драйвера для управления браузером
      */
     private final WebDriver driver;
-
-    /**
-     * Экземпляр конфигурации с параметрами для Avito тестов
-     */
-    private final BaseConfig config = ConfigFactory.create(BaseConfig.class, System.getProperties());
 
     /**
      * Элемент раскрывающий все категории товаров
@@ -40,19 +34,19 @@ public class HomePage {
      * Элемент выбора подкатегории 'Оргтехника и расходники'
      */
     @FindBy(xpath = "//a[@href='/penza/orgtehnika_i_rashodniki']")
-    private WebElement categoryConsumables;
+    private WebElement consumablesSubcategory;
 
     /**
      * Элемент выбора чекбокса 'Новые' товары
      */
     @FindBy(xpath = "//span[text()='Новые']")
-    private WebElement checkboxNewGoods;
+    private WebElement newGoodsCheckbox;
 
     /**
      * Элемент с полем поиска товаров
      */
     @FindBy(xpath = "//input[@data-marker='search-form/suggest']")
-    private WebElement searchFieldGoods;
+    private WebElement searchGoodsField;
 
     /**
      * Элемент выбора города
@@ -64,19 +58,13 @@ public class HomePage {
      * Элемент очищающий поле поиска города
      */
     @FindBy(xpath = "//div[@class='suggest-icon-qI_yN']")
-    private WebElement clearCitySearchField;
+    private WebElement citySearchFieldClear;
 
     /**
      * Элемент с полем поиска городов
      */
     @FindBy(xpath = "//input[@data-marker='popup-location/region/input']")
-    private WebElement searchFieldCities;
-
-    /**
-     * Элемент с городом Владивосток
-     */
-    @FindBy(xpath = "//strong[text()='Владивосток']")
-    private WebElement cityDropDown;
+    private WebElement searchCitiesField;
 
     /**
      * Элемент выбора n объявлений
@@ -88,13 +76,19 @@ public class HomePage {
      * Элемент раскрывающий выпадающий список 'Сортировка'
      */
     @FindBy(xpath = "//div[@class='index-topPanel-McfCA']/div[2]/div")
-    private WebElement dropDownList;
+    private WebElement listDropDown;
 
     /**
      * Элемент с выбором 'Дороже' в выпадающем списке
      */
     @FindBy(xpath = "//button[@data-marker='sort/custom-option(2)']")
-    private WebElement chooseExpensive;
+    private WebElement expensiveChoose;
+
+    /**
+     * Элемент с первым совпадением при поиске города
+     */
+    @FindBy(xpath = "//ul[@class='suggest-suggests-CzXfs']/li[1]/span/span/span")
+    private WebElement firstCityInDropDown;
 
     /**
      * Конструктор создания HomePage
@@ -113,7 +107,7 @@ public class HomePage {
      */
     @Step("Раскрытие списка 'Все категории'")
     public HomePage expansionAllCategories() {
-        Waiters.waitUntilVisible(driver, allCategoriesButton);
+        Waiters.waitUntilVisibleElement(driver, allCategoriesButton);
         allCategoriesButton.click();
         ScreenHelper.makeScreenShot(driver);
         return this;
@@ -127,7 +121,7 @@ public class HomePage {
     @Step("Выбор категории 'Электроника'")
     public HomePage selectCategoryElectronics() {
         switchToWindow();
-        Waiters.waitUntilVisible(driver, electronicsCategory);
+        Waiters.waitUntilVisibleElement(driver, electronicsCategory);
         coverByElement(electronicsCategory);
         ScreenHelper.makeScreenShot(driver);
         return this;
@@ -140,7 +134,7 @@ public class HomePage {
      */
     @Step("Выбор подкатегории 'Оргтехника и расходники'")
     public HomePage selectCategoryConsumables() {
-        categoryConsumables.click();
+        consumablesSubcategory.click();
         ScreenHelper.makeScreenShot(driver);
         return this;
     }
@@ -152,7 +146,7 @@ public class HomePage {
      */
     @Step("Клик чекбокса 'Новые'")
     public HomePage clickCheckBox() {
-        checkboxNewGoods.click();
+        newGoodsCheckbox.click();
         ScreenHelper.makeScreenShot(driver);
         return this;
     }
@@ -164,7 +158,7 @@ public class HomePage {
      */
     @Step("Ввод товара в поле поиска")
     public HomePage inputGoodsInSearchField(String product) {
-        searchFieldGoods.sendKeys(product);
+        searchGoodsField.sendKeys(product);
         ScreenHelper.makeScreenShot(driver);
         return this;
     }
@@ -176,8 +170,21 @@ public class HomePage {
      */
     @Step("Раскрытие поп-апа выбора города")
     public HomePage selectCityPopUp() {
-        Waiters.waitUntilVisible(driver, chooseCityPopUp);
+        Waiters.waitUntilVisibleElement(driver, chooseCityPopUp);
         chooseCityPopUp.click();
+        ScreenHelper.makeScreenShot(driver);
+        return this;
+    }
+
+    /**
+     * Метод клика по кнопке очищения поля поиска города
+     *
+     * @return текущая страница
+     */
+    @Step("Клик по кнопке очищения поля поиска города")
+    public HomePage clearCitySearchField() {
+        Waiters.waitUntilVisibleElement(driver, citySearchFieldClear);
+        citySearchFieldClear.click();
         ScreenHelper.makeScreenShot(driver);
         return this;
     }
@@ -189,11 +196,10 @@ public class HomePage {
      */
     @Step("Выбор города")
     public HomePage selectCity(String searchingCity) {
-        Waiters.waitUntilVisible(driver, clearCitySearchField);
-        clearCitySearchField.click();
-        searchFieldCities.sendKeys(searchingCity);
-        Waiters.waitUntilVisible(driver, cityDropDown);
-        cityDropDown.click();
+        Waiters.waitUntilVisibleElement(driver, searchCitiesField);
+        searchCitiesField.sendKeys(searchingCity);
+        Waiters.waitUntilVisibleText(driver, firstCityInDropDown, searchingCity);
+        firstCityInDropDown.click();
         ScreenHelper.makeScreenShot(driver);
         return this;
     }
@@ -205,8 +211,21 @@ public class HomePage {
      */
     @Step("Выбор найденных объявлений в выбранном городе")
     public HomePage selectAllAds() {
-        Waiters.waitUntilVisible(driver, selectAds);
+        Waiters.waitUntilVisibleElement(driver, selectAds);
         selectAds.click();
+        ScreenHelper.makeScreenShot(driver);
+        return this;
+    }
+
+    /**
+     * Раскрытие выпадающего списка 'Сортировка'
+     *
+     * @return текущая страница
+     */
+    @Step("Раскрытие выпадающего списка 'Сортировка'")
+    public HomePage expansionDropDown() {
+        Waiters.waitUntilVisibleElement(driver, listDropDown);
+        listDropDown.click();
         ScreenHelper.makeScreenShot(driver);
         return this;
     }
@@ -216,12 +235,10 @@ public class HomePage {
      *
      * @return текущая страница
      */
-    @Step("Клик чекбокса 'Дороже'")
-    public HomePage clickOnCheckBox() {
-        Waiters.waitUntilVisible(driver, dropDownList);
-        dropDownList.click();
-        Waiters.waitUntilVisible(driver, chooseExpensive);
-        chooseExpensive.click();
+    @Step("Выбор 'Дороже' в выпадающем списке")
+    public HomePage chooseExpensive() {
+        Waiters.waitUntilVisibleElement(driver, expensiveChoose);
+        expensiveChoose.click();
         ScreenHelper.makeScreenShot(driver);
         return this;
     }
@@ -233,8 +250,9 @@ public class HomePage {
      */
     @Step("Вывод в консоль ссылок первых результатов запроса")
     public void printFirstUrlSpecifiedNumber(int count) {
+        String linkAttribute = "href";
         for (int i = 1; i <= count; i++) {
-            System.out.println(getSearchResultElementByNumber(i).getAttribute(config.linkAttribute()));
+            System.out.println(getSearchResultElementByNumber(i).getAttribute(linkAttribute));
         }
     }
 

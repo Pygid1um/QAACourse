@@ -19,9 +19,11 @@ public class AvitoTest extends BaseTest {
                 .clickCheckBox()
                 .inputGoodsInSearchField("Принтер")
                 .selectCityPopUp()
+                .clearCitySearchField()
                 .selectCity("Владивосток")
                 .selectAllAds()
-                .clickOnCheckBox()
+                .expansionDropDown()
+                .chooseExpensive()
                 .printFirstUrlSpecifiedNumber(5);
     }
 }

@@ -14,11 +14,4 @@ public interface BaseConfig extends Config {
      * @return параметр строки поиска
      */
     String url();
-
-    /**
-     * Метод возвращает параметр linkAttribute из avito_tests_config.properties
-     *
-     * @return параметр атрибута ссылки
-     */
-    String linkAttribute();
 }
