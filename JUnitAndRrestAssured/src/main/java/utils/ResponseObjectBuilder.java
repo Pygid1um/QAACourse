@@ -2,22 +2,15 @@ package utils;
 
 import models.response.ErrorModelDto;
 
-public class ResponseObjectBuilder {
+import static utils.TestDataHelper.STATUS_CODE_ERROR_500;
+import static utils.TestDataHelper.STATUS_CODE_OK;
 
-    /**
-     * Код неизвестной 500 ошибки
-     */
-    private static final int UNKNOWN_CODE = 500;
+public class ResponseObjectBuilder {
 
     /**
      * Код 1 когда питомец не найден
      */
     private static final int NOT_FOUND_CODE = 1;
-
-    /**
-     * Код 200 успешного вызова
-     */
-    private static final int SUCCESS_CODE = 200;
 
     /**
      * Тип неизвестной ошибки
@@ -51,7 +44,7 @@ public class ResponseObjectBuilder {
      */
     public static ErrorModelDto getUnknownErrorResponse() {
         return ErrorModelDto.builder()
-                .code(UNKNOWN_CODE)
+                .code(STATUS_CODE_ERROR_500)
                 .type(UNKNOWN_TYPE)
                 .message(UNKNOWN_MESSAGE)
                 .build();
@@ -77,7 +70,7 @@ public class ResponseObjectBuilder {
      */
     public static ErrorModelDto deletePetResponse(String id) {
         return ErrorModelDto.builder()
-                .code(SUCCESS_CODE)
+                .code(STATUS_CODE_OK)
                 .type(UNKNOWN_TYPE)
                 .message(id)
                 .build();
@@ -103,7 +96,7 @@ public class ResponseObjectBuilder {
      */
     public static ErrorModelDto deleteOrderResponse(String id) {
         return ErrorModelDto.builder()
-                .code(SUCCESS_CODE)
+                .code(STATUS_CODE_OK)
                 .type(UNKNOWN_TYPE)
                 .message(id)
                 .build();

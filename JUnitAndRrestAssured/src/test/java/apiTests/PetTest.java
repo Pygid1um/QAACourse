@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import utils.RequestObjectBuilder;
 import utils.ResponseObjectBuilder;
 import utils.ResponseWrapper;
-
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
@@ -20,6 +19,26 @@ import static utils.TestDataHelper.*;
 @Epic("Pet контроллер")
 @Feature("Добавление нового питомца в магазин")
 public class PetTest extends BaseTest {
+
+    /**
+     * Переменная хранящая JSON объект для создания питомца
+     */
+    private PetModelDto requestPet;
+
+    /**
+     * Переменная класса обертки с полученным ответом
+     */
+    private ResponseWrapper responseWrapper;
+
+    /**
+     * Переменная с ответом для GET запроса
+     */
+    private ResponseWrapper getResult;
+
+    /**
+     * Переменная хранящая JSON объект созданного питомца для тестовых данных
+     */
+    private PetModelDto createdPetTestData;
 
     /**
      * Метод для создания тестовых данных для некоторых тестов

@@ -6,46 +6,13 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import models.request.PetModelDto;
-import models.request.StoreModelDto;
 import org.aeonbits.owner.ConfigFactory;
 import steps.Steps;
-import utils.ResponseWrapper;
 
 /**
  * Базовый тестовый класс с общими настройками
  */
 public class BaseTest {
-
-    /**
-     * Переменная хранящая JSON объект для создания питомца
-     */
-    protected PetModelDto requestPet;
-
-    /**
-     * Переменная класса обертки с полученным ответом
-     */
-    protected ResponseWrapper responseWrapper;
-
-    /**
-     * Переменная с ответом для GET запроса
-     */
-    protected ResponseWrapper getResult;
-
-    /**
-     * Переменная хранящая JSON объект созданного питомца для тестовых данных
-     */
-    protected PetModelDto createdPetTestData;
-
-    /**
-     * Переменная хранящая JSON объект для создания заявки в магазине
-     */
-    protected StoreModelDto requestStore;
-
-    /**
-     * Переменная хранящая JSON объект созданного заявки в магазине для тестовых данных
-     */
-    protected StoreModelDto createdStoreTestData;
 
     /**
      * Экземпляр интерфейса с конфигурацией

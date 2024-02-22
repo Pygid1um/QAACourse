@@ -20,22 +20,12 @@ public class Steps {
     /**
      * Часть URL для POST запросов создания питомцев
      */
-    private static final String POST_PET_PATH = "/pet";
+    private static final String POST_PUT_PET_PATH = "/pet";
 
     /**
-     * Часть URL для PUT запросов редактирования питомцев
+     * Часть URL для GET и DELETE запросов питомцев
      */
-    private static final String PUT_PET_PATH = "/pet";
-
-    /**
-     * Часть URL для GET запроса поиска питомцев
-     */
-    private static final String GET_PET_PATH = "/pet/";
-
-    /**
-     * Часть URL для DELETE запроса удаления питомцев
-     */
-    private static final String DELETE_PET_PATH = "/pet/";
+    private static final String GET_DELETE_PET_PATH = "/pet/";
 
     /**
      * Часть URL для POST запроса создания заявки в магазине
@@ -43,14 +33,9 @@ public class Steps {
     private static final String POST_STORE_PATH = "/store/order";
 
     /**
-     * Часть URL для GET запроса поиска заявки в магазине
+     * Часть URL для GET и DELETE запросов заявки в магазине
      */
-    private static final String GET_STORE_PATH = "/store/order/";
-
-    /**
-     * Часть URL для DELETE запроса удаления заявки в магазине
-     */
-    private static final String DELETE_STORE_PATH = "/store/order/";
+    private static final String GET_DELETE_STORE_PATH = "/store/order/";
 
     /**
      * Конструктор для создания экземпляра класса
@@ -71,7 +56,7 @@ public class Steps {
         return new ResponseWrapper(given(petStoreRequestSpecification)
                 .when()
                 .body(request)
-                .post(POST_PET_PATH)
+                .post(POST_PUT_PET_PATH)
                 .andReturn());
     }
 
@@ -84,7 +69,7 @@ public class Steps {
     public ResponseWrapper getPetToStore(String petId) {
         return new ResponseWrapper(given(petStoreRequestSpecification)
                 .when()
-                .get(GET_PET_PATH + petId)
+                .get(GET_DELETE_PET_PATH + petId)
                 .andReturn());
     }
 
@@ -98,7 +83,7 @@ public class Steps {
         return new ResponseWrapper(given(petStoreRequestSpecification)
                 .when()
                 .body(request)
-                .put(PUT_PET_PATH)
+                .put(POST_PUT_PET_PATH)
                 .andReturn());
     }
 
@@ -111,7 +96,7 @@ public class Steps {
     public ResponseWrapper deletePetToStore(String petId) {
         return new ResponseWrapper(given(petStoreRequestSpecification)
                 .when()
-                .delete(DELETE_PET_PATH + petId)
+                .delete(GET_DELETE_PET_PATH + petId)
                 .andReturn());
     }
 
@@ -138,7 +123,7 @@ public class Steps {
     public ResponseWrapper getOrderStore(String orderId) {
         return new ResponseWrapper(given(petStoreRequestSpecification)
                 .when()
-                .get(GET_STORE_PATH + orderId)
+                .get(GET_DELETE_STORE_PATH + orderId)
                 .andReturn());
     }
 
@@ -151,7 +136,7 @@ public class Steps {
     public ResponseWrapper deleteOrderToStore(String orderId) {
         return new ResponseWrapper(given(petStoreRequestSpecification)
                 .when()
-                .delete(DELETE_STORE_PATH + orderId)
+                .delete(GET_DELETE_STORE_PATH + orderId)
                 .andReturn());
     }
 }

@@ -21,6 +21,26 @@ import static utils.TestDataHelper.*;
 public class StoreTest extends BaseTest {
 
     /**
+     * Переменная хранящая JSON объект для создания заявки в магазине
+     */
+    private StoreModelDto requestStore;
+
+    /**
+     * Переменная хранящая JSON объект созданного заявки в магазине для тестовых данных
+     */
+    private StoreModelDto createdStoreTestData;
+
+    /**
+     * Переменная класса обертки с полученным ответом
+     */
+    private ResponseWrapper responseWrapper;
+
+    /**
+     * Переменная с ответом для GET запроса
+     */
+    private ResponseWrapper getResult;
+
+    /**
      * Метод для создания тестовых данных для некоторых тестов
      */
     @BeforeEach
